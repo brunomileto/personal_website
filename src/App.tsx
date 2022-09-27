@@ -1,13 +1,13 @@
-import { ActionButton } from "./components/ActionButton";
-import { Heading } from "./components/Heading";
-import { Home } from "./Pages/Home";
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./Router";
+
+import "./styles/global.css";
 
 function App() {
   return (
-    <>
-      <Heading />
-      <Home />
-    </>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   );
 }
 
