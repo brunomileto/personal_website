@@ -2,24 +2,53 @@
 module.exports = {
   content: ["./src/**/*.tsx"],
   theme: {
-    fontFamily: {
-      sans: ["Inter", "sans-serif"],
-      mono: ["Space Mono", "mono", "serif"],
-    },
     extend: {
+      borderWidth: {
+        1: "1px",
+      },
+      backgroundImage: {
+        hero: "url('/bgBlur.svg')",
+      },
       colors: {
-        accent: "#4CF2FB",
-        accentLight: "#97DAC9",
-        background: "#20252E",
-        backgroundBlue: "#0a192f",
-        backgroundLight: "#21262F",
-        backgroundHambMenu: "#272E39",
-        text: "#ADA9A3",
-        title: "#CFDCEC",
-        subTitle: "#B8B4AC",
-        subTitleLight: "#CFDCEC",
+        primary: {
+          dark: "#01080E",
+          marine: "#011627",
+          darkMarine: "#011221",
+        },
+        secondary: {
+          sky: "#607B96",
+          waterGreen: "#3C9D93",
+          blue: "#4D5BCE",
+          white: "#FFFFFF",
+        },
+        accent: {
+          orange: "#FEA55F",
+          waterGreenShinny: "#43D9AD",
+          redOrange: "#E99287",
+          lilac: "#C98BDF",
+        },
+        lines: "#1E2D3D",
+        gradient: {
+          start: "#4D5BCE",
+          end: "#43D9AD",
+        },
+      },
+      fontFamily: {
+        sans: ["Fira Code", "sans serif"],
+      },
+      fontSize: {
+        headline: "3.875rem",
+        subHeadline: "2rem",
+        bodyText: "1.125rem",
+        labels: "1rem",
+        codeSnippets: "0.875rem",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-radix")({
+      variantPrefix: "radix",
+    }),
+    require("tailwind-scrollbar"),
+  ],
 };
