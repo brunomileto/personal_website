@@ -1,8 +1,10 @@
-import { NavLink } from "react-router-dom";
-import { HamburgerMenu } from "./HamburgerMenu";
-import { pages } from "../Router";
+import { NavLink } from 'react-router-dom';
+
+import { pages } from '../Router';
+import { HamburgerMenu } from './HamburgerMenu';
 
 export function Header() {
+  const actualPath = window.location.pathname;
   return (
     <header className="border-b-1 rounded-t-lg border-lines h-[55px]">
       <nav className="flex items-center justify-between w-full h-full">
@@ -19,34 +21,51 @@ export function Header() {
         >
           <NavLink
             to={pages.home.path}
-            className=" border-l-1 border-l-lines border-b-2 border-b-transparent
-             hover:border-b-accent-orange p-4 h-full hover:text-secondary-white/80 
-             transition-colors delay-150"
+            className={` border-l-1 border-l-lines border-b-2 border-b-transparent
+             p-4 h-full hover:text-secondary-white/80 transition-colors delay-150
+             ${
+               actualPath == pages.home.path
+                 ? "border-b-accent-orange"
+                 : "hover:border-b-accent-orange"
+             }`}
           >
             {pages.home.name}
           </NavLink>
           <NavLink
             to={pages.about.path}
-            className=" border-l-1 border-l-lines border-b-2 border-b-transparent
-             hover:border-b-accent-orange p-4 h-full hover:text-secondary-white/80 
-             transition-colors delay-150"
+            className={` border-l-1 border-l-lines border-b-2 border-b-transparent
+             p-4 h-full hover:text-secondary-white/80 transition-colors delay-150
+             ${
+               actualPath == pages.about.path
+                 ? "border-b-accent-orange"
+                 : "hover:border-b-accent-orange"
+             }`}
           >
             {pages.about.name}
           </NavLink>
           <NavLink
             to={pages.projects.path}
-            className=" border-x-1 border-x-lines border-b-2 border-b-transparent
-             hover:border-b-accent-orange p-4 h-full hover:text-secondary-white/80 
-             transition-colors delay-150 "
+            className={` border-x-1 border-x-lines border-b-2 border-b-transparent
+             p-4 h-full hover:text-secondary-white/80 transition-colors delay-150
+             ${
+               actualPath == pages.projects.path
+                 ? "border-b-accent-orange"
+                 : "hover:border-b-accent-orange"
+             }`}
           >
             {pages.projects.name}
           </NavLink>
         </div>
         <NavLink
           to={pages.contact.path}
-          className=" hidden md:block border-l-1 border-l-lines border-b-2 border-b-transparent
-           hover:border-b-accent-orange p-4 h-full hover:text-secondary-white/80 
-           transition-colors delay-150"
+          className={` hidden md:block border-l-1 border-l-lines border-b-2 
+          border-b-transparent p-4 h-full hover:text-secondary-white/80 
+          transition-colors delay-150
+           ${
+             actualPath == pages.contact.path
+               ? "border-b-accent-orange"
+               : "hover:border-b-accent-orange"
+           }`}
         >
           {pages.contact.name}
         </NavLink>

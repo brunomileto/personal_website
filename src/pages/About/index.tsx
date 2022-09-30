@@ -1,20 +1,15 @@
-import { useState } from "react";
-import CloseFillIcon from "remixicon-react/CloseFillIcon";
+import { useState } from 'react';
+import CloseFillIcon from 'remixicon-react/CloseFillIcon';
 
-import userImg from "../../assets/userImg.png";
-import { DisclosureMenu } from "./components/DisclosureMenu";
-import {
-  aboutMenu,
-  AboutMenuNames,
-  AboutSubMenuNames,
-  SubMenuItens,
-} from "./data";
-import { CodeSnippet } from "../../components/CodeSnippet";
-import { MobileTitle } from "./components/MobileTitle";
-import { LateralMenu } from "./components/LateralMenu";
-import { SelectedFile } from "./components/SelectedFile";
-import { CodeSnippetSection } from "./components/CodeSnippetSection";
-import { Content } from "./components/Content";
+import userImg from '../../assets/userImg.png';
+import { CodeSnippet } from '../../components/CodeSnippet';
+import { CodeSnippetSection } from './components/CodeSnippetSection';
+import { Content } from './components/Content';
+import { DisclosureMenu } from './components/DisclosureMenu';
+import { LateralMenu } from './components/LateralMenu';
+import { MobileTitle } from './components/MobileTitle';
+import { SelectedFile } from './components/SelectedFile';
+import { aboutMenu, AboutMenuNames, AboutSubMenuNames, SubMenuItens } from './data';
 
 export function About() {
   const [selectedMenuName, setSelectedMenuName] = useState<AboutMenuNames>(
@@ -51,7 +46,7 @@ export function About() {
   return (
     <main
       className="w-full h-full flex flex-col md:flex-row justify-start 
-                 md:overflow-hidden overflow-scroll pb-6"
+                 md:overflow-hidden overflow-scroll mb-0"
     >
       <MobileTitle />
       <LateralMenu handleSelectedMenu={handleSelectedMenu} />

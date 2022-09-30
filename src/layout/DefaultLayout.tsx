@@ -1,14 +1,12 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from 'react-router-dom';
 
-import { Footer } from "../components/Footer";
-
-import { Header } from "../components/Header";
-import { pages } from "../Router";
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
+import { pages } from '../Router';
 
 export function DefaultLayout() {
   const location = useLocation();
   const isHomePage = location.pathname === pages.home.path;
-  console.log(location.pathname);
   return (
     <div
       id="defaultLayout"

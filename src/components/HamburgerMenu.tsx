@@ -1,14 +1,14 @@
-import { NavLink } from "react-router-dom";
-import * as Popover from "@radix-ui/react-popover";
+import Hamburger from 'hamburger-react';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-import Hamburger from "hamburger-react";
-import { pages } from "../Router";
-import { useState } from "react";
-import { Header } from "./Header";
+import * as Popover from '@radix-ui/react-popover';
+
+import { pages } from '../Router';
+import { Header } from './Header';
 
 export function HamburgerMenu() {
   const [isHamburgerOpen, setHamburgerOpen] = useState<boolean>(false);
-  console.log(isHamburgerOpen);
   return (
     <div className="block z-50 md:hidden">
       <Hamburger
