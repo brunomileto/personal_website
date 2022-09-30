@@ -1,6 +1,6 @@
-import TwitterFillIcon from "remixicon-react/TwitterFillIcon";
-import FacebookFillIcon from "remixicon-react/FacebookFillIcon";
-import GithubFillIcon from "remixicon-react/GithubFillIcon";
+import FacebookFillIcon from 'remixicon-react/FacebookFillIcon';
+import GithubFillIcon from 'remixicon-react/GithubFillIcon';
+import TwitterFillIcon from 'remixicon-react/TwitterFillIcon';
 
 export function Footer() {
   return (

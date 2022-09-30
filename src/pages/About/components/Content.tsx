@@ -1,6 +1,6 @@
-import { AboutMenuNames, AboutSubMenuNames, SubMenuItens } from "../data";
-import { CodeSnippetSection } from "./CodeSnippetSection";
-import { SelectedFile } from "./SelectedFile";
+import { AboutMenuNames, AboutSubMenuNames, SubMenuItens } from '../data';
+import { CodeSnippetSection } from './CodeSnippetSection';
+import { SelectedFile } from './SelectedFile';
 
 interface Props {
   selectedMenuName: AboutMenuNames;

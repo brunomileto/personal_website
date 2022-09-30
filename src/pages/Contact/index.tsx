@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { ContactMenuNames } from "./data";
-import { MobileTitle } from "./components/MobileTitle";
-import { LateralMenu } from "./components/LateralMenu";
-import { Content } from "./components/Content";
+import { useState } from 'react';
+
+import { Content } from './components/Content';
+import { LateralMenu } from './components/LateralMenu';
+import { MobileTitle } from './components/MobileTitle';
+import { ContactMenuNames } from './data';
 
 export function Contact() {
   const [selectedMenuName, setSelectedMenuName] = useState<ContactMenuNames>(
@@ -12,7 +13,7 @@ export function Contact() {
   return (
     <main
       className="w-full h-full flex flex-col md:flex-row justify-start 
-                 md:overflow-hidden overflow-scroll pb-6"
+                 md:overflow-hidden overflow-scroll mb-0 "
     >
       <MobileTitle />
       <LateralMenu />

@@ -1,8 +1,8 @@
-import { CodeSnippet } from "../../components/CodeSnippet";
-
-import { SnippetsSwiper } from "./components/SnippetsSwiper";
+import { CodeSnippet } from '../../components/CodeSnippet';
+import { SnippetsSwiper } from './components/SnippetsSwiper';
 
 export function Home() {
+  const currentUrl = window.location.href;
   return (
     <section
       className="w-full h-[calc(100vh-200px)] flex justify-center gap-[calc(8000vw/1920)]
@@ -24,17 +24,27 @@ export function Home() {
             &gt; Fullstack developer
           </span>
         </div>
-        <div className="flex flex-col gap-4">
-          <span>// find my profile on Github:</span>
-          <a
-            href="https://github.com/brunomileto"
-            className="break-words"
-            target="_blank"
-          >
-            <CodeSnippet id="home-code">
-              {'const githubLink = "https://github.com/brunomileto"'}
-            </CodeSnippet>
-          </a>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-0">
+            <span>// find my profile on Github:</span>
+            <a
+              href="https://github.com/brunomileto"
+              className="break-words"
+              target="_blank"
+            >
+              <CodeSnippet id="home-code">
+                {'const githubLink = "https://github.com/brunomileto"'}
+              </CodeSnippet>
+            </a>
+          </div>
+          <div className="flex flex-col gap-0">
+            <span>// Get my CV:</span>
+            <a href="/public/cv_en.pdf" className="break-words" target="_blank">
+              <CodeSnippet id="cv_code">
+                {`const myCvLink = "${currentUrl}public/cv_en.pdf"`}
+              </CodeSnippet>
+            </a>
+          </div>
         </div>
       </div>
       <div className="hidden  lg:block max-w-[560px] w-[calc(56000vw/1920)]">

@@ -1,27 +1,34 @@
-import { ReactNode, useEffect } from "react";
-import Prism from "prismjs";
-import "prismjs/components/index";
-import "prismjs/themes/prism-funky.min.css";
+// import 'prismjs/components/index';
+import Prism from 'prismjs';
+import { ReactNode, useEffect } from 'react';
+// import 'prismjs/themes/prism-funky.css';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { anOldHope } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 interface Props {
-  children: ReactNode | string;
+  children: string;
   codeType?: string;
   id?: string;
 }
 
 export function CodeSnippet({
   children,
-  codeType = "language-javascript",
+  codeType = "typescript",
   id = "code",
 }: Props) {
-  useEffect(() => {
-    Prism.highlightAll();
-  }, []);
+  // useEffect(() => {
+  //   Prism.highlightAll();
+  // }, []);
+  const teste = "style='background: transparent'";
   return (
     <div className="break-words">
-      <code id={id} className={codeType}>
-        {children}
-      </code>
+      <SyntaxHighlighter
+        wrapLongLines={true}
+        wrapLines={true}
+        language={codeType}
+        style={anOldHope}
+        children={children}
+      />
     </div>
   );
 }

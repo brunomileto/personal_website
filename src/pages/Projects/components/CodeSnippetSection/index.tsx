@@ -1,5 +1,5 @@
-import { CodeSnippet } from '../../../../components/CodeSnippet';
-import { AboutCodeSnippetWrapper } from './components/AboutCodeSnippetWrapper';
+import { CodeSnippet } from "../../../../components/CodeSnippet";
+import { AboutCodeSnippetWrapper } from "./components/AboutCodeSnippetWrapper";
 
 export function CodeSnippetSection() {
   return (

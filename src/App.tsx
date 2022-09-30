@@ -1,4 +1,6 @@
+import { ApolloProvider } from "@apollo/client/react";
 import { BrowserRouter } from "react-router-dom";
+import { apolloClient } from "./lib/apollo";
 import { Router } from "./Router";
 
 import "./styles/global.css";
@@ -6,7 +8,9 @@ import "./styles/global.css";
 function App() {
   return (
     <BrowserRouter>
-      <Router />
+      <ApolloProvider client={apolloClient}>
+        <Router />
+      </ApolloProvider>
     </BrowserRouter>
   );
 }

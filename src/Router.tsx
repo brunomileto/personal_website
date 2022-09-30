@@ -3,6 +3,7 @@ import { DefaultLayout } from "./layout/DefaultLayout";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Home } from "./pages/Home";
+import { Projects } from "./pages/Projects";
 
 export const pages = {
   home: { name: "_home", path: "/" },
@@ -18,6 +19,7 @@ export function Router() {
         <Route path={pages.home.path} element={<Home />} />
         <Route path={pages.about.path} element={<About />} />
         <Route path={pages.contact.path} element={<Contact />} />
+        <Route path={pages.projects.path} element={<Projects />} />
         {/* <Route /> */}
       </Route>
     </Routes>

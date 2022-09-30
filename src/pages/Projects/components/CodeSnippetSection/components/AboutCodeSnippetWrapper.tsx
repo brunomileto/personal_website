@@ -1,5 +1,6 @@
-import userImg from '../../../../../assets/userImg.png';
-import { CodeSnippet } from '../../../../../components/CodeSnippet';
+import { CodeSnippet } from "../../../../../components/CodeSnippet";
+
+import userImg from "../../../../../assets/userImg.png";
 
 const codeSnippetsData = [
   {
@@ -204,7 +205,7 @@ export function AboutCodeSnippetWrapper() {
   return (
     <div
       id="code-snippet-content"
-      className="flex flex-col gap-12 md:gap-0 md:h-full md:pl-10 md:overflow-y-visible "
+      className="flex flex-col gap-12 md:gap-0 md:h-full md:pl-10 md:overflow-y-visible1"
     >
       {codeSnippetsData.map((codeSnippet) => {
         return (
@@ -212,7 +213,7 @@ export function AboutCodeSnippetWrapper() {
             id="snippet"
             key={codeSnippet.id}
             className="flex flex-col gap-3 w-full 2xl:items-center md:pr-10 
-                       md:border-r-1 md:border-lines md:pt-12 pb-6"
+                       md:border-r-1 md:border-lines md:pt-12"
           >
             <div
               id="snippet-creator"

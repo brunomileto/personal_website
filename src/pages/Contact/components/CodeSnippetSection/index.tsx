@@ -1,5 +1,8 @@
-import { CodeSnippet } from "../../../../components/CodeSnippet";
-import { AboutCodeSnippetWrapper } from "./components/AboutCodeSnippetWrapper";
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+
+import { CodeSnippet } from '../../../../components/CodeSnippet';
+import { AboutCodeSnippetWrapper } from './components/AboutCodeSnippetWrapper';
 
 interface NameProps {
   name: string;
@@ -40,8 +43,13 @@ function FunctionParamSpan({ name }: NameProps) {
 function SymbolsSpan({ name }: NameProps) {
   return <span className="text-accent-lilac">{name}</span>;
 }
+interface Props {
+  name: string;
+  email: string;
+  message: string;
+}
 
-export function CodeSnippetSection() {
+export function CodeSnippetSection({ email, message, name }: Props) {
   return (
     <section
       id="code-snippet"
@@ -88,32 +96,30 @@ export function CodeSnippetSection() {
               &nbsp;&nbsp;&nbsp;
               <VariableNameSpan name="name" />
               <SymbolsSpan name=":" /> &nbsp;
-              <FunctionParamSpan name='"Jonathan Davis"' />
+              <FunctionParamSpan name={`"${name}"`} />
               <SymbolsSpan name="," />
             </div>
             <div>
               &nbsp;&nbsp;&nbsp;
               <VariableNameSpan name="email" />
               <SymbolsSpan name=":" /> &nbsp;
-              <FunctionParamSpan name='"jonathan-davis@gmail.com"' />
+              <FunctionParamSpan name={`"${email}"`} />
               <SymbolsSpan name="," />
             </div>
             <div>
               &nbsp;&nbsp;&nbsp;
               <VariableNameSpan name="message" />
               <SymbolsSpan name=":" /> &nbsp;
-              <FunctionParamSpan
-                name={`"Hey! Just checked your website and it looks awesome! Also, 
-                   I checked your articled on Medium. Lerned a few nice tips. 
-                   Thanks!"`}
-              />
+              <FunctionParamSpan name={`"${message}"`} />
               <SymbolsSpan name="," />
             </div>
             <div>
               &nbsp;&nbsp;&nbsp;
               <VariableNameSpan name="date" />
               <SymbolsSpan name=":" /> &nbsp;
-              <FunctionParamSpan name='"Thu 21 Apr"' />
+              <FunctionParamSpan
+                name={`"${format(new Date(), "PP", { locale: ptBR })}"`}
+              />
               <SymbolsSpan name="," />
             </div>
             <div>
