@@ -1,17 +1,18 @@
-import { BrowserRouter, HashRouter } from "react-router-dom";
-import { Footer } from "./components/Footer";
-import { Header, Header2, Header3 } from "./components/Header";
-import ScrollToTop from "./components/ScrollToTop";
-import { Routes } from "./Routes";
+import { ApolloProvider } from "@apollo/client/react";
+import { BrowserRouter } from "react-router-dom";
+import { apolloClient } from "./lib/apollo";
+import { Router } from "./Router";
 
-export const App = () => {
+import "./styles/global.css";
+
+function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop>
-        <Header />
-        <Routes />
-        <Footer />
-      </ScrollToTop>
+      <ApolloProvider client={apolloClient}>
+        <Router />
+      </ApolloProvider>
     </BrowserRouter>
   );
-};
+}
+
+export default App;
