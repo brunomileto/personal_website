@@ -1,9 +1,9 @@
-import MailFillIcon from "remixicon-react/MailFillIcon";
-import PhoneFillIcon from "remixicon-react/PhoneFillIcon";
-import ExternalLinkFillIcon from "remixicon-react/ExternalLinkFillIcon";
+import ExternalLinkFillIcon from 'remixicon-react/ExternalLinkFillIcon';
+import MailFillIcon from 'remixicon-react/MailFillIcon';
+import PhoneFillIcon from 'remixicon-react/PhoneFillIcon';
 
-import { ContactMenuNames } from "../data";
-import { DisclosureMenuLinks } from "../../../components/DisclosureMenuLinks";
+import { DisclosureMenuLinks } from '../../../components/DisclosureMenuLinks';
+import { ContactMenuNames } from '../data';
 
 export function DisclosureMenu() {
   return (
@@ -11,17 +11,23 @@ export function DisclosureMenu() {
       <DisclosureMenuLinks
         menuName={ContactMenuNames.contacts}
         links={[
-          { name: "brunomileto@outlook.com", href: "#", icon: MailFillIcon },
+          { name: "bruno_mileto@outlook.com", href: "#", icon: MailFillIcon },
           { name: "+5562992861675", href: "#", icon: PhoneFillIcon },
         ]}
       />
       <DisclosureMenuLinks
         menuName={ContactMenuNames.findMeAlso}
         links={[
-          { name: "Instagram account", href: "#", icon: ExternalLinkFillIcon },
-          { name: "Youtube channel", href: "#", icon: ExternalLinkFillIcon },
-          { name: "Twich profile", href: "#", icon: ExternalLinkFillIcon },
-          { name: "Blog", href: "#", icon: ExternalLinkFillIcon },
+          {
+            name: "Instagram account",
+            href: "https://instagram.com/bruno_mileto",
+            icon: ExternalLinkFillIcon,
+          },
+          {
+            name: "WhatsApp",
+            href: "https://api.whatsapp.com/send?phone=+5562992861675&text=sua%20mensagem",
+            icon: ExternalLinkFillIcon,
+          },
         ]}
       />
     </>
