@@ -51,7 +51,7 @@ export function ProjectCard({ project, index }: Props) {
             })}
           </div>
         </div>
-        <div className="h-[90%] pt-7 pb-8 pl-8 flex flex-col gap-6">
+        <div className="h-[90%] pt-7 mt-6 pb-8 pl-8 flex flex-col gap-6">
           <span>
             Duis aute irure dolor in velit esse cillum incididunt ut labore.
           </span>
