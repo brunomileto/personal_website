@@ -5,13 +5,13 @@ export function Home() {
   const currentUrl = window.location.href;
   return (
     <section
-      className="w-full h-[calc(100vh-200px)] flex justify-center gap-[calc(8000vw/1920)]
-    md:px-[8vw]  xl:px-[16.198vw] overflow-hidden"
+      className="w-full h-[calc(100vh-200px)] flex justify-center 
+      gap-[calc(8000vw/1920)] md:px-[8vw] xl:px-[16.198vw] overflow-hidden"
     >
       <div
         className="flex flex-col justify-between md:justify-start  
                       md:gap-[calc(8100vw/1920)] h-full px-4 
-                      pt-24 md:pt-36 pb-20 "
+                      pt-24 md:pt-36 pb-20 w-full"
       >
         <div className="flex flex-col">
           <span className="font-extralight text-[#E5E9F0] text-bodyText">
