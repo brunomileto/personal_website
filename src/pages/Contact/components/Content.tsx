@@ -13,7 +13,6 @@ export function Content() {
     changedEmail: string,
     changedMessage: string
   ) {
-    console.log(changedName);
     if (changedName !== name) {
       setName(changedName);
     }
