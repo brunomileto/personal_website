@@ -20,7 +20,7 @@ export function HamburgerMenu() {
         id="layer"
         className={`${
           isHamburgerOpen
-            ? "fixed top-[66px] left-[18px] right-[18px] bottom-[77px] bg-primary-marine"
+            ? "fixed top-[66px] left-[18px] right-[17px] bottom-[61px] bg-primary-marine"
             : "hidden"
         } `}
       >

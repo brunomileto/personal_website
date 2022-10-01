@@ -6,7 +6,7 @@ import { HamburgerMenu } from './HamburgerMenu';
 export function Header() {
   const actualPath = window.location.pathname;
   return (
-    <header className="border-b-1 rounded-t-lg border-lines h-[55px]">
+    <header className="border-b-1 rounded-t-lg border-lines h-[55px !important] ">
       <nav className="flex items-center justify-between w-full h-full">
         <NavLink
           className="px-4 md:px-0 md:pl-4 md:flex-shrink-0 md:w-[calc(40000vw/1920)] lg:w-[calc(31100vw/1920)]"
