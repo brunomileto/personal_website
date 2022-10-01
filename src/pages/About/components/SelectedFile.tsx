@@ -1,5 +1,3 @@
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import CloseFillIcon from 'remixicon-react/CloseFillIcon';
 
 import { AboutMenuNames, AboutSubMenuNames, SubMenuItens } from '../data';
@@ -15,25 +13,6 @@ export function SelectedFile({
   selectedSubMenuName,
   selectedSubMenuItens,
 }: Props) {
-  const teste = selectedSubMenuItens?.description.split(" ");
-  let wordCount = 0;
-  let indexes: number[] = [];
-  teste?.forEach((word, index) => {
-    wordCount = word.length + wordCount;
-    if (wordCount >= 75) {
-      indexes.push(index);
-      wordCount = 0;
-    }
-  });
-  console.log(indexes);
-  indexes.forEach((index) => {
-    teste?.splice(index, 0, "\n");
-  });
-
-  const text = teste?.join(" ");
-
-  console.log(selectedSubMenuItens?.description);
-
   return (
     <section className="flex flex-col gap-4 md:gap-0 md:w-3/4 max-w-[700px] ">
       <header

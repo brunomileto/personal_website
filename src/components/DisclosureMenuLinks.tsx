@@ -1,6 +1,8 @@
-import { RemixiconReactIconComponentType } from "remixicon-react";
-import { Disclosure } from "@headlessui/react";
-import ArrowRightSFillIcon from "remixicon-react/ArrowRightSFillIcon";
+import { RemixiconReactIconComponentType } from 'remixicon-react';
+import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
+
+import { Disclosure } from '@headlessui/react';
+
 type DisclosureMenuLinkType = {
   icon: RemixiconReactIconComponentType;
   name: string;
@@ -44,6 +46,7 @@ export function DisclosureMenuLinks({
               {links.map((link) => {
                 return (
                   <a
+                    key={link.name}
                     href={link.href}
                     className="text-sm md:text-xs flex md:w-fit flex-row items-center gap-2"
                   >
