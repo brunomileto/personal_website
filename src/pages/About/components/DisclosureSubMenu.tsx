@@ -1,8 +1,10 @@
-import { Disclosure } from "@headlessui/react";
-import ArrowRightSLineIcon from "remixicon-react/ArrowRightSLineIcon";
-import File2FillIcon from "remixicon-react/File2FillIcon";
-import Folder from "remixicon-react/Folder2FillIcon";
-import { AboutSubMenuNames, SubMenuItens } from "../data";
+import ArrowRightSLineIcon from 'remixicon-react/ArrowRightSLineIcon';
+import File2FillIcon from 'remixicon-react/File2FillIcon';
+import Folder from 'remixicon-react/Folder2FillIcon';
+
+import { Disclosure } from '@headlessui/react';
+
+import { AboutSubMenuNames, SubMenuItens } from '../data';
 
 interface Props {
   subMenuName: AboutSubMenuNames;

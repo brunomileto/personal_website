@@ -1,10 +1,12 @@
-import { Disclosure } from "@headlessui/react";
-import ArrowRightSFillIcon from "remixicon-react/ArrowRightSFillIcon";
-import MailFillIcon from "remixicon-react/MailFillIcon";
-import PhoneFillIcon from "remixicon-react/PhoneFillIcon";
-import { DisclosureMenuLinks } from "../../../components/DisclosureMenuLinks";
-import { aboutMenu } from "../data";
-import { DisclosureSubMenu } from "./DisclosureSubMenu";
+import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
+import MailFillIcon from 'remixicon-react/MailFillIcon';
+import PhoneFillIcon from 'remixicon-react/PhoneFillIcon';
+
+import { Disclosure } from '@headlessui/react';
+
+import { DisclosureMenuLinks } from '../../../components/DisclosureMenuLinks';
+import { aboutMenu } from '../data';
+import { DisclosureSubMenu } from './DisclosureSubMenu';
 
 interface Props {
   handleSubMenuItemClick: (name: string) => void;
@@ -35,7 +37,7 @@ export function DisclosureMenu({ handleSubMenuItemClick }: Props) {
                   {personalInfoMenu.name}
                 </span>
               </Disclosure.Button>
-              <Disclosure.Panel className="flex flex-col px-7 mt-1">
+              <Disclosure.Panel className="flex flex-col px-7 mt-1 mb-3">
                 {personalInfoMenu.subMenu.map((subMenu) => {
                   return (
                     <DisclosureSubMenu
@@ -46,24 +48,6 @@ export function DisclosureMenu({ handleSubMenuItemClick }: Props) {
                     />
                   );
                 })}
-                {/* <DisclosureSubMenu
-                  subMenuName={personalInfoMenu.subMenu.map((subMenu) => {
-                    return subMenu.name;
-                  })}
-                  subMenuItems={[aboutMenu.personalInfo.subMenus.bio.name]}
-                />
-                <DisclosureSubMenu
-                  subMenuName={aboutMenu.personalInfo.subMenus.education.name}
-                  subMenuItems={Object.keys(
-                    aboutMenu.personalInfo.subMenus.education.items
-                  )}
-                />
-                <DisclosureSubMenu
-                  subMenuName={aboutMenu.personalInfo.subMenus.interests.name}
-                  subMenuItems={Object.keys(
-                    aboutMenu.personalInfo.subMenus.interests.items
-                  )}
-                /> */}
               </Disclosure.Panel>
             </>
           );
