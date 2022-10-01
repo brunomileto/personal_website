@@ -10,8 +10,9 @@ export function DefaultLayout() {
   return (
     <div
       id="defaultLayout"
-      className={`flex flex-col justify-between w-full h-[calc(100vh-35px)]
-      rounded-lg border-1 border-lines bg-primary-marine  
+      className={`flex flex-col justify-between w-full h-[calc(100vh-75px)] 
+      md:h-[calc(100vh-35px)] rounded-lg border-1 border-lines 
+      bg-primary-marine  
       ${
         isHomePage && "bg-hero bg-no-repeat bg-left"
       } md:bg-right-top bg-cover md:bg-contain`}
