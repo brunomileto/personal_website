@@ -160,8 +160,6 @@ export function Projects() {
     GET_ALL_PROJECTS_SIMPLE_QUERY
   );
 
-  console.log(data);
-
   const selectedTypes = projectTypes.filter((type) => type.isSelected);
 
   let selectedProjects: ProjectQuery[] | undefined = [];
@@ -173,11 +171,6 @@ export function Projects() {
       selectedProjects?.push(project);
     }
   });
-
-  console.log(selectedProjects);
-
-  // if (!selectedProjects || selectedProjects.length <= 0)
-  //   selectedProjects = [...data?.projects!];
 
   return (
     <main

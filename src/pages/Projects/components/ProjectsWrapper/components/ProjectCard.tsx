@@ -8,11 +8,6 @@ interface Props {
 }
 
 export function ProjectCard({ project, index }: Props) {
-  console.log(project.coverPicture.url);
-  fetch(project.coverPicture.url).then((res) => {
-    console.log(res);
-  });
-
   return (
     <div className="flex flex-col items-center gap-4 w-full max-w-[400px] ">
       <header className="w-full text-sm">
