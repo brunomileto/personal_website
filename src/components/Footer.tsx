@@ -1,6 +1,5 @@
-import FacebookFillIcon from 'remixicon-react/FacebookFillIcon';
 import GithubFillIcon from 'remixicon-react/GithubFillIcon';
-import TwitterFillIcon from 'remixicon-react/TwitterFillIcon';
+import LinkedinFillIcon from 'remixicon-react/LinkedinFillIcon';
 
 export function Footer() {
   return (
@@ -10,23 +9,17 @@ export function Footer() {
       </div>
       <div className="flex items-center h-full">
         <a
-          href="#"
+          target="_blank"
+          href="https://linkedin.com/in/bruno-mileto"
           className="border-l-1 border-lines h-full flex justify-center 
                    hover:text-secondary-white hover:transition-colors 
                      hover:delay-150 items-center px-3 text-secondary-sky/50 "
         >
-          <TwitterFillIcon />
+          <LinkedinFillIcon />
         </a>
         <a
-          href="#"
-          className="border-l-1 border-lines h-full flex justify-center 
-                   hover:text-secondary-white hover:transition-colors 
-                     hover:delay-150 items-center px-3 text-secondary-sky/50 "
-        >
-          <FacebookFillIcon />
-        </a>
-        <a
-          href="#"
+          target="_blank"
+          href="https://github.com/brunomileto"
           className="border-l-1 border-lines h-full flex justify-center 
                    hover:text-secondary-white hover:transition-colors 
                      hover:delay-150 items-center px-3 text-secondary-sky/50 "

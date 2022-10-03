@@ -29,11 +29,33 @@ export const aboutMenu: Menu[] = [
     name: AboutMenuNames.personalInfo,
     subMenu: [
       {
-        name: AboutSubMenuNames.interests,
+        name: AboutSubMenuNames.bio,
         items: [
-          { name: "sports", description: "alsdkjaksjdlkasd" },
-          { name: "technology", description: "ajksdhkajsdhkajsh" },
-          { name: "daily", description: "ajksdhkajsdhkajsh" },
+          {
+            name: "myBio",
+            description: `I'm Bruno Mileto, FullStack Developer, located at Brazil, 
+              with 2+ years of experience. I worked and studied different technologies, 
+              during this time. I currently work professionally using C# / ASP.NET 
+              and ReactJs.
+              I was introduced to the Dev world by a professor during my mechanical 
+              engineering bachelor. I still finished the course and even worked 
+              two years as a mechanical engineer but I decided to change my career 
+              and became a Dev.
+              First, I studied and did freelancer projects with Python and Django 
+              and, through those projects, I got a job as a Dev. The company uses 
+              Delphi and C# /ASP.Net, and I did projects and client support for a 
+              legacy business management system.
+              Later, I was contacted via LinkedIn to participate in a selection 
+              process at my current company. Here, we develop custom projects for 
+              customers. In those projects, we participate in the whole life time, 
+              from planning to implementation and, obviously, going through its 
+              development. Here, we use internal frameworks, C# / ASP.NET and 
+              Javascript.
+              Finally, I still do freelance. As a freelance, I develop websites, 
+              usually landing pages and SPAs, using pure HTML/CSS/Javascript, 
+              bootstrap, webflow and, recently, ReactJs.
+              `,
+          },
         ],
       },
       {
@@ -44,37 +66,11 @@ export const aboutMenu: Menu[] = [
         ],
       },
       {
-        name: AboutSubMenuNames.bio,
+        name: AboutSubMenuNames.interests,
         items: [
-          {
-            name: "myBio",
-            description: `I'm Bruno Mileto, FullStack Developer, located at Brazil, 
-              with 2+ years of experience. I worked and studied different technologies, 
-              during this time. I currently work professionally using C# / ASP.NET 
-              and ReactJs.
-  
-              I was introduced to the Dev world by a professor during my mechanical 
-              engineering bachelor. I still finished the course and even worked 
-              two years as a mechanical engineer but I decided to change my career 
-              and became a Dev.
-              
-              First, I studied and did freelancer projects with Python and Django 
-              and, through those projects, I got a job as a Dev. The company uses 
-              Delphi and C# /ASP.Net, and I did projects and client support for a 
-              legacy business management system.
-              
-              Later, I was contacted via LinkedIn to participate in a selection 
-              process at my current company. Here, we develop custom projects for 
-              customers. In those projects, we participate in the whole life time, 
-              from planning to implementation and, obviously, going through its 
-              development. Here, we use internal frameworks, C# / ASP.NET and 
-              Javascript.
-              
-              Finally, I still do freelance. As a freelance, I develop websites, 
-              usually landing pages and SPAs, using pure HTML/CSS/Javascript, 
-              bootstrap, webflow and, recently, ReactJs.
-              `,
-          },
+          { name: "sports", description: "alsdkjaksjdlkasd" },
+          { name: "technology", description: "ajksdhkajsdhkajsh" },
+          { name: "daily", description: "ajksdhkajsdhkajsh" },
         ],
       },
     ],

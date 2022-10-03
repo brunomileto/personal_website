@@ -1,6 +1,9 @@
-import { Mousewheel } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { CodeSnippet } from "../../../components/CodeSnippet";
+import { Mousewheel } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { CodeSnippet } from '../../../components/CodeSnippet';
+import { useCodeSnippets } from '../../../contexts/CodesContext';
+
 // Import Swiper styles
 
 const codeSnippets = [
@@ -35,6 +38,7 @@ const codeSnippets = [
 ];
 
 export function SnippetsSwiper() {
+  const codeSnippetsData = useCodeSnippets();
   return (
     <Swiper
       id="swiper"
@@ -47,14 +51,16 @@ export function SnippetsSwiper() {
       modules={[Mousewheel]}
       className="h-full w-full max-w-[560px]"
     >
-      {codeSnippets.map((codeSnippet) => {
+      {codeSnippetsData.map((codeSnippet) => {
         return (
           <SwiperSlide
             key={codeSnippet.code}
             className="bg-primary-darkMarine rounded-xl border-in border-1
                       border-lines w-full h-[200px] overflow-hidden  text-xs p-4"
           >
-            <CodeSnippet>{codeSnippet.code}</CodeSnippet>
+            <CodeSnippet codeType={codeSnippet.language}>
+              {codeSnippet.code!}
+            </CodeSnippet>
           </SwiperSlide>
         );
       })}
