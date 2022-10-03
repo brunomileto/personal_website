@@ -40,16 +40,13 @@ export function SelectedFile({
       </header>
       <div
         className="md:overflow-scroll md:h-full md:pt-0 md:scrollbar 
-                    md:scrollbar-thumb-secondary-sky pb-6 md:-pb-0"
+                    md:scrollbar-thumb-secondary-sky pb-6 md:pb-0"
       >
-        <div className="h-full md:mr-4  md:pt-4 ">
+        <div className="h-full md:mr-4  md:pt-4 md:border-r-1 md:border-lines">
           <p
-            className="text-sm leading-7 md:px-4 break-words md:border-r-1 
-                      md:border-lines md:pb-6 "
+            className="text-sm leading-7 md:px-4 break-words md:border-r-0
+                      md:border-lines md:pb-6 whitespace-pre-line"
           >
-            {selectedSubMenuItens?.description}
-            {selectedSubMenuItens?.description}
-            {selectedSubMenuItens?.description}
             {selectedSubMenuItens?.description}
           </p>
         </div>

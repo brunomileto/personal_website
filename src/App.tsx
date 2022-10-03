@@ -1,15 +1,20 @@
-import { ApolloProvider } from "@apollo/client/react";
-import { BrowserRouter } from "react-router-dom";
-import { apolloClient } from "./lib/apollo";
-import { Router } from "./Router";
+import './styles/global.css';
 
-import "./styles/global.css";
+import { BrowserRouter } from 'react-router-dom';
+
+import { ApolloProvider } from '@apollo/client/react';
+
+import { CodesContextProvider } from './contexts/CodesContext';
+import { apolloClient } from './lib/apollo';
+import { Router } from './Router';
 
 function App() {
   return (
     <BrowserRouter>
       <ApolloProvider client={apolloClient}>
-        <Router />
+        <CodesContextProvider>
+          <Router />
+        </CodesContextProvider>
       </ApolloProvider>
     </BrowserRouter>
   );

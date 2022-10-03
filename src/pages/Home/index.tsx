@@ -47,7 +47,7 @@ export function Home() {
           </div>
         </div>
       </div>
-      <div className="hidden  lg:block max-w-[560px] w-[calc(56000vw/1920)]">
+      <div className="hidden lg:block max-w-[560px] w-[calc(90000vw/1920)]">
         <SnippetsSwiper />
       </div>
     </section>

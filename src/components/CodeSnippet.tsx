@@ -21,7 +21,7 @@ export function CodeSnippet({
   // }, []);
   const teste = "style='background: transparent'";
   return (
-    <div className="break-words">
+    <div className="break-words overflow-y-hidden h-full">
       <SyntaxHighlighter
         wrapLongLines={true}
         wrapLines={true}

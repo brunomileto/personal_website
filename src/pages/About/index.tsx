@@ -25,9 +25,11 @@ export function About() {
   if (!selectedSubMenuItens) {
     const [projectInfo, _] = aboutMenu;
     projectInfo.subMenu.forEach((subMenu) => {
-      setSelectedSubMenuItens(
-        subMenu.items.find((item) => item.name === "myBio")
-      );
+      subMenu.items.forEach((item) => {
+        if (item.name === "myBio") {
+          setSelectedSubMenuItens(item);
+        }
+      });
     });
   }
 
