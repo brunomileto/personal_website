@@ -14,7 +14,7 @@ export function SelectedFile({
   selectedSubMenuItens,
 }: Props) {
   return (
-    <section className="flex flex-col gap-4 md:gap-0 md:w-3/4 max-w-[700px] ">
+    <section className="flex flex-col gap-4 md:gap-0 md:flex-1 md:w-full max-w-[700px] ">
       <header
         id="content-header"
         className="md:flex  md:flex-row md:gap-3 md:border-b-1 
@@ -40,12 +40,13 @@ export function SelectedFile({
       </header>
       <div
         className="md:overflow-scroll md:h-full md:pt-0 md:scrollbar 
-                    md:scrollbar-thumb-secondary-sky pb-6 md:pb-0"
+                    md:scrollbar-thumb-secondary-sky pb-6 md:pb-0 w-full"
       >
         <div className="h-full md:mr-4  md:pt-4 md:border-r-1 md:border-lines">
           <p
             className="text-sm leading-7 md:px-4 break-words md:border-r-0
-                      md:border-lines md:pb-6 whitespace-pre-line"
+                      md:border-lines md:pb-6 whitespace-pre-line md:w-[calc(100vw/3)]
+                         "
           >
             {selectedSubMenuItens?.description}
           </p>
