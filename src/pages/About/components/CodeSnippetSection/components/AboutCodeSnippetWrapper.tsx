@@ -17,7 +17,7 @@ export function AboutCodeSnippetWrapper() {
           <div
             id="snippet"
             key={codeSnippet.id}
-            className="flex flex-col gap-3 w-full 2xl:items-center md:pr-10 
+            className="flex flex-col gap-3 w-full lg:items-center  2xl:items-center md:pr-10 
                        md:border-r-1 md:border-lines md:pt-12 pb-6"
           >
             <div className="flex flex-col gap-3 2xl:items-center">
@@ -37,9 +37,9 @@ export function AboutCodeSnippetWrapper() {
               </div>
               <div
                 id="snippet"
-                className="bg-primary-darkMarine border-1 text-sm leading-7 ]
-                          font-extralight border-lines rounded-2xl p-6 md:w-[620px]
-                          md:max-w-[664px] w-full "
+                className="bg-primary-darkMarine border-1 text-sm leading-7
+                          font-extralight border-lines rounded-2xl p-6
+                          md:max-w-[664px] lg:w-[calc(72vw/2)] xl:w-[calc(80vw/2)];"
               >
                 <CodeSnippet codeType={codeSnippet.language} id="code">
                   {codeSnippet.code!}
