@@ -1,9 +1,5 @@
-// import 'prismjs/components/index';
-import Prism from 'prismjs';
-import { ReactNode, useEffect } from 'react';
-// import 'prismjs/themes/prism-funky.css';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { anOldHope } from 'react-syntax-highlighter/cjs/esm/styles/hljs';
+import { anOldHope } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 interface Props {
   children: string;

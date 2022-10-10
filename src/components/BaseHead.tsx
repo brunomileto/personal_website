@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const BASE_TITLE = "Pix Anônimo. Faça e receba pix sem compartilhar seus dados";
+const BASE_TITLE = "Bruno Mileto | Fullstack Developer";
 
 const BASE_DESCRIPTION = `O Pix Anônimo fornece um meio de você receber pix, sem informar seus dados pessoais.
 O pagador verá todos os dados do Pix Anônimo e quando o pagamento for realizado,
