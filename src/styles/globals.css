@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 html {
-  @apply m-0 p-0;
+  @apply m-0 p-0 h-screen overflow-y-hidden;
 }
 
 pre {
@@ -17,8 +17,7 @@ pre {
 }
 
 body {
-  @apply bg-[#010C15] h-full w-full font-sans text-labels 
-  text-secondary-sky m-0 p-4 box-border;
+  @apply bg-[#010C15] p-4 overflow-y-hidden;
 }
 
 .swiper-slide {
