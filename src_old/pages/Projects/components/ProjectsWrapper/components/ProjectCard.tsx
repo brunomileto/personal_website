@@ -21,11 +21,7 @@ export function ProjectCard({ project, index }: Props) {
         className="w-full h-[380px] flex flex-col border-1
                  border-lines rounded-2xl overflow-clip"
       >
-        <div
-          // className={`bg-[url('${project.coverPicture.url}')] bg-center bg-no-repeat bg-cover relative
-          //               h-full`}
-          className="h-full relative"
-        >
+        <div className="h-full relative">
           <div className="h-full w-full relative">
             <img className="absolute" src={project.coverPicture.url} />
           </div>
