@@ -6,37 +6,6 @@ import { CodeSnippet } from './CodeSnippet';
 
 // Import Swiper styles
 
-const codeSnippets = [
-  {
-    code:
-      "function initializeModelChunk1<T>(chunk: ResolvedModelChunk): T { " +
-      "const value: T = parseModel(chunk._response, chunk._value); " +
-      "const initializedChunk: InitializedChunk<T> = (chunk: any); " +
-      "initializedChunk._status = INITIALIZED; ",
-  },
-  {
-    code:
-      "function initializeModelChunk2<T>(chunk: ResolvedModelChunk): T { " +
-      "const value: T = parseModel(chunk._response, chunk._value); " +
-      "const initializedChunk: InitializedChunk<T> = (chunk: any); " +
-      "initializedChunk._status = INITIALIZED; ",
-  },
-  {
-    code:
-      "function initializeModelChunk3<T>(chunk: ResolvedModelChunk): T { " +
-      "const value: T = parseModel(chunk._response, chunk._value); " +
-      "const initializedChunk: InitializedChunk<T> = (chunk: any); " +
-      "initializedChunk._status = INITIALIZED; ",
-  },
-  {
-    code:
-      "function initializeModelChunk4<T>(chunk: ResolvedModelChunk): T { " +
-      "const value: T = parseModel(chunk._response, chunk._value); " +
-      "const initializedChunk: InitializedChunk<T> = (chunk: any); " +
-      "initializedChunk._status = INITIALIZED; ",
-  },
-];
-
 export function SnippetsSwiper() {
   const codeSnippetsData = useCodeSnippets();
   return (
@@ -49,7 +18,7 @@ export function SnippetsSwiper() {
       spaceBetween={10}
       centeredSlides={true}
       modules={[Mousewheel]}
-      className="h-full w-full max-w-[560px]"
+      className="h-full w-full max-w-[560px] 2xl:max-w-full"
     >
       {codeSnippetsData.map((codeSnippet) => {
         return (
@@ -58,9 +27,7 @@ export function SnippetsSwiper() {
             className="bg-primary-darkMarine rounded-xl border-in border-1
                       border-lines w-full h-[200px] overflow-hidden  text-xs p-4"
           >
-            <CodeSnippet codeType={codeSnippet.language}>
-              {codeSnippet.code!}
-            </CodeSnippet>
+            <CodeSnippet codeType={codeSnippet.language}>{codeSnippet.code!}</CodeSnippet>
           </SwiperSlide>
         );
       })}
