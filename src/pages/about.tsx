@@ -1,22 +1,22 @@
-import { NextPage } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
-import ArrowRightSLineIcon from 'remixicon-react/ArrowRightSLineIcon';
-import CloseFillIcon from 'remixicon-react/CloseFillIcon';
-import File2FillIcon from 'remixicon-react/File2FillIcon';
-import Folder from 'remixicon-react/Folder2FillIcon';
-import MailFillIcon from 'remixicon-react/MailFillIcon';
-import PhoneFillIcon from 'remixicon-react/PhoneFillIcon';
+import { NextPage } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import ArrowRightSFillIcon from "remixicon-react/ArrowRightSFillIcon";
+import ArrowRightSLineIcon from "remixicon-react/ArrowRightSLineIcon";
+import CloseFillIcon from "remixicon-react/CloseFillIcon";
+import File2FillIcon from "remixicon-react/File2FillIcon";
+import Folder from "remixicon-react/Folder2FillIcon";
+import MailFillIcon from "remixicon-react/MailFillIcon";
+import PhoneFillIcon from "remixicon-react/PhoneFillIcon";
 
-import { Disclosure } from '@headlessui/react';
+import { Disclosure } from "@headlessui/react";
 
-import userImg from '../assets/userImg.png';
-import { CodeSnippet } from '../components/CodeSnippet';
-import { DisclosureMenuLinks } from '../components/DisclosureMenuLinks';
-import { Spinner } from '../components/Spinner';
-import { useCodeSnippets } from '../context/CodesContext';
+import userImg from "../assets/userImg.png";
+import { CodeSnippet } from "../components/CodeSnippet";
+import { DisclosureMenuLinks } from "../components/DisclosureMenuLinks";
+import { Spinner } from "../components/Spinner";
+import { useCodeSnippets } from "../context/CodesContext";
 
 export enum AboutMenuNames {
   personalInfo = "personal_info",
@@ -54,127 +54,6 @@ export const aboutMenu: Menu[] = [
           {
             name: "myBio",
             description: `I'm Bruno Mileto, FullStack Developer, located at Brazil, with 2+ years of experience. I worked and studied different technologies,
-              during this time. I currently work professionally using C# / ASP.NET
-              and ReactJs.
-              I was introduced to the Dev world by a professor during my mechanical
-              engineering bachelor. I still finished the course and even worked
-              two years as a mechanical engineer but I decided to change my career
-              and became a Dev.
-              First, I studied and did freelancer projects with Python and Django
-              and, through those projects, I got a job as a Dev. The company uses
-              Delphi and C# /ASP.Net, and I did projects and client support for a
-              legacy business management system.
-              Later, I was contacted via LinkedIn to participate in a selection
-              process at my current company. Here, we develop custom projects for
-              customers. In those projects, we participate in the whole life time,
-              from planning to implementation and, obviously, going through its
-              development. Here, we use internal frameworks, C# / ASP.NET and
-              Javascript.
-              Finally, I still do freelance. As a freelance, I develop websites,
-              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
-              bootstrap, webflow and, recently, ReactJs.
-              I'm Bruno Mileto, FullStack Developer, located at Brazil,
-              with 2+ years of experience. I worked and studied different technologies,
-              during this time. I currently work professionally using C# / ASP.NET
-              and ReactJs.
-              I was introduced to the Dev world by a professor during my mechanical
-              engineering bachelor. I still finished the course and even worked
-              two years as a mechanical engineer but I decided to change my career
-              and became a Dev.
-              First, I studied and did freelancer projects with Python and Django
-              and, through those projects, I got a job as a Dev. The company uses
-              Delphi and C# /ASP.Net, and I did projects and client support for a
-              legacy business management system.
-              Later, I was contacted via LinkedIn to participate in a selection
-              process at my current company. Here, we develop custom projects for
-              customers. In those projects, we participate in the whole life time,
-              from planning to implementation and, obviously, going through its
-              development. Here, we use internal frameworks, C# / ASP.NET and
-              Javascript.
-              Finally, I still do freelance. As a freelance, I develop websites,
-              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
-              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
-              with 2+ years of experience. I worked and studied different technologies,
-              during this time. I currently work professionally using C# / ASP.NET
-              and ReactJs.
-              I was introduced to the Dev world by a professor during my mechanical
-              engineering bachelor. I still finished the course and even worked
-              two years as a mechanical engineer but I decided to change my career
-              and became a Dev.
-              First, I studied and did freelancer projects with Python and Django
-              and, through those projects, I got a job as a Dev. The company uses
-              Delphi and C# /ASP.Net, and I did projects and client support for a
-              legacy business management system.
-              Later, I was contacted via LinkedIn to participate in a selection
-              process at my current company. Here, we develop custom projects for
-              customers. In those projects, we participate in the whole life time,
-              from planning to implementation and, obviously, going through its
-              development. Here, we use internal frameworks, C# / ASP.NET and
-              Javascript.
-              Finally, I still do freelance. As a freelance, I develop websites,
-              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
-              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
-              with 2+ years of experience. I worked and studied different technologies,
-              during this time. I currently work professionally using C# / ASP.NET
-              and ReactJs.
-              I was introduced to the Dev world by a professor during my mechanical
-              engineering bachelor. I still finished the course and even worked
-              two years as a mechanical engineer but I decided to change my career
-              and became a Dev.
-              First, I studied and did freelancer projects with Python and Django
-              and, through those projects, I got a job as a Dev. The company uses
-              Delphi and C# /ASP.Net, and I did projects and client support for a
-              legacy business management system.
-              Later, I was contacted via LinkedIn to participate in a selection
-              process at my current company. Here, we develop custom projects for
-              customers. In those projects, we participate in the whole life time,
-              from planning to implementation and, obviously, going through its
-              development. Here, we use internal frameworks, C# / ASP.NET and
-              Javascript.
-              Finally, I still do freelance. As a freelance, I develop websites,
-              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
-              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
-              with 2+ years of experience. I worked and studied different technologies,
-              during this time. I currently work professionally using C# / ASP.NET
-              and ReactJs.
-              I was introduced to the Dev world by a professor during my mechanical
-              engineering bachelor. I still finished the course and even worked
-              two years as a mechanical engineer but I decided to change my career
-              and became a Dev.
-              First, I studied and did freelancer projects with Python and Django
-              and, through those projects, I got a job as a Dev. The company uses
-              Delphi and C# /ASP.Net, and I did projects and client support for a
-              legacy business management system.
-              Later, I was contacted via LinkedIn to participate in a selection
-              process at my current company. Here, we develop custom projects for
-              customers. In those projects, we participate in the whole life time,
-              from planning to implementation and, obviously, going through its
-              development. Here, we use internal frameworks, C# / ASP.NET and
-              Javascript.
-              Finally, I still do freelance. As a freelance, I develop websites,
-              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
-              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
-              with 2+ years of experience. I worked and studied different technologies,
-              during this time. I currently work professionally using C# / ASP.NET
-              and ReactJs.
-              I was introduced to the Dev world by a professor during my mechanical
-              engineering bachelor. I still finished the course and even worked
-              two years as a mechanical engineer but I decided to change my career
-              and became a Dev.
-              First, I studied and did freelancer projects with Python and Django
-              and, through those projects, I got a job as a Dev. The company uses
-              Delphi and C# /ASP.Net, and I did projects and client support for a
-              legacy business management system.
-              Later, I was contacted via LinkedIn to participate in a selection
-              process at my current company. Here, we develop custom projects for
-              customers. In those projects, we participate in the whole life time,
-              from planning to implementation and, obviously, going through its
-              development. Here, we use internal frameworks, C# / ASP.NET and
-              Javascript.
-              Finally, I still do freelance. As a freelance, I develop websites,
-              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
-              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
-              with 2+ years of experience. I worked and studied different technologies,
               during this time. I currently work professionally using C# / ASP.NET
               and ReactJs.
               I was introduced to the Dev world by a professor during my mechanical
@@ -248,12 +127,10 @@ const About = () => {
     let words = "";
 
     for (let index = 0; index < selectedSubMenuItensWordsList.length; index++) {
-      console.log("wordsList");
       words += `${selectedSubMenuItensWordsList[index]} `;
       if (words.length >= 2300) {
         wordsList.push(words);
         words = "";
-        console.log("wordsList", wordsList);
       }
     }
     if (wordsList.length <= 0) wordsList.push(words);
