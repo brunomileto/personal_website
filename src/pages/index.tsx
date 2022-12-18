@@ -33,7 +33,7 @@ const Home: NextPage = () => {
             </a>
           </div>
           <div className="flex flex-col gap-0">
-            <span>// Get my CV:</span>
+            <span>// get my CV:</span>
             <a href="/cv_en.pdf" className="break-words" target="_blank">
               <CodeSnippet id="cv_code">{`const myCvLink = "http://brunomileto.tech/cv_en.pdf"`}</CodeSnippet>
             </a>

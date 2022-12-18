@@ -15,6 +15,7 @@ import { Disclosure } from '@headlessui/react';
 import userImg from '../assets/userImg.png';
 import { CodeSnippet } from '../components/CodeSnippet';
 import { DisclosureMenuLinks } from '../components/DisclosureMenuLinks';
+import { Spinner } from '../components/Spinner';
 import { useCodeSnippets } from '../context/CodesContext';
 
 export enum AboutMenuNames {
@@ -52,7 +53,127 @@ export const aboutMenu: Menu[] = [
         items: [
           {
             name: "myBio",
-            description: `I'm Bruno Mileto, FullStack Developer, located at Brazil,
+            description: `I'm Bruno Mileto, FullStack Developer, located at Brazil, with 2+ years of experience. I worked and studied different technologies,
+              during this time. I currently work professionally using C# / ASP.NET
+              and ReactJs.
+              I was introduced to the Dev world by a professor during my mechanical
+              engineering bachelor. I still finished the course and even worked
+              two years as a mechanical engineer but I decided to change my career
+              and became a Dev.
+              First, I studied and did freelancer projects with Python and Django
+              and, through those projects, I got a job as a Dev. The company uses
+              Delphi and C# /ASP.Net, and I did projects and client support for a
+              legacy business management system.
+              Later, I was contacted via LinkedIn to participate in a selection
+              process at my current company. Here, we develop custom projects for
+              customers. In those projects, we participate in the whole life time,
+              from planning to implementation and, obviously, going through its
+              development. Here, we use internal frameworks, C# / ASP.NET and
+              Javascript.
+              Finally, I still do freelance. As a freelance, I develop websites,
+              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
+              bootstrap, webflow and, recently, ReactJs.
+              I'm Bruno Mileto, FullStack Developer, located at Brazil,
+              with 2+ years of experience. I worked and studied different technologies,
+              during this time. I currently work professionally using C# / ASP.NET
+              and ReactJs.
+              I was introduced to the Dev world by a professor during my mechanical
+              engineering bachelor. I still finished the course and even worked
+              two years as a mechanical engineer but I decided to change my career
+              and became a Dev.
+              First, I studied and did freelancer projects with Python and Django
+              and, through those projects, I got a job as a Dev. The company uses
+              Delphi and C# /ASP.Net, and I did projects and client support for a
+              legacy business management system.
+              Later, I was contacted via LinkedIn to participate in a selection
+              process at my current company. Here, we develop custom projects for
+              customers. In those projects, we participate in the whole life time,
+              from planning to implementation and, obviously, going through its
+              development. Here, we use internal frameworks, C# / ASP.NET and
+              Javascript.
+              Finally, I still do freelance. As a freelance, I develop websites,
+              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
+              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
+              with 2+ years of experience. I worked and studied different technologies,
+              during this time. I currently work professionally using C# / ASP.NET
+              and ReactJs.
+              I was introduced to the Dev world by a professor during my mechanical
+              engineering bachelor. I still finished the course and even worked
+              two years as a mechanical engineer but I decided to change my career
+              and became a Dev.
+              First, I studied and did freelancer projects with Python and Django
+              and, through those projects, I got a job as a Dev. The company uses
+              Delphi and C# /ASP.Net, and I did projects and client support for a
+              legacy business management system.
+              Later, I was contacted via LinkedIn to participate in a selection
+              process at my current company. Here, we develop custom projects for
+              customers. In those projects, we participate in the whole life time,
+              from planning to implementation and, obviously, going through its
+              development. Here, we use internal frameworks, C# / ASP.NET and
+              Javascript.
+              Finally, I still do freelance. As a freelance, I develop websites,
+              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
+              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
+              with 2+ years of experience. I worked and studied different technologies,
+              during this time. I currently work professionally using C# / ASP.NET
+              and ReactJs.
+              I was introduced to the Dev world by a professor during my mechanical
+              engineering bachelor. I still finished the course and even worked
+              two years as a mechanical engineer but I decided to change my career
+              and became a Dev.
+              First, I studied and did freelancer projects with Python and Django
+              and, through those projects, I got a job as a Dev. The company uses
+              Delphi and C# /ASP.Net, and I did projects and client support for a
+              legacy business management system.
+              Later, I was contacted via LinkedIn to participate in a selection
+              process at my current company. Here, we develop custom projects for
+              customers. In those projects, we participate in the whole life time,
+              from planning to implementation and, obviously, going through its
+              development. Here, we use internal frameworks, C# / ASP.NET and
+              Javascript.
+              Finally, I still do freelance. As a freelance, I develop websites,
+              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
+              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
+              with 2+ years of experience. I worked and studied different technologies,
+              during this time. I currently work professionally using C# / ASP.NET
+              and ReactJs.
+              I was introduced to the Dev world by a professor during my mechanical
+              engineering bachelor. I still finished the course and even worked
+              two years as a mechanical engineer but I decided to change my career
+              and became a Dev.
+              First, I studied and did freelancer projects with Python and Django
+              and, through those projects, I got a job as a Dev. The company uses
+              Delphi and C# /ASP.Net, and I did projects and client support for a
+              legacy business management system.
+              Later, I was contacted via LinkedIn to participate in a selection
+              process at my current company. Here, we develop custom projects for
+              customers. In those projects, we participate in the whole life time,
+              from planning to implementation and, obviously, going through its
+              development. Here, we use internal frameworks, C# / ASP.NET and
+              Javascript.
+              Finally, I still do freelance. As a freelance, I develop websites,
+              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
+              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
+              with 2+ years of experience. I worked and studied different technologies,
+              during this time. I currently work professionally using C# / ASP.NET
+              and ReactJs.
+              I was introduced to the Dev world by a professor during my mechanical
+              engineering bachelor. I still finished the course and even worked
+              two years as a mechanical engineer but I decided to change my career
+              and became a Dev.
+              First, I studied and did freelancer projects with Python and Django
+              and, through those projects, I got a job as a Dev. The company uses
+              Delphi and C# /ASP.Net, and I did projects and client support for a
+              legacy business management system.
+              Later, I was contacted via LinkedIn to participate in a selection
+              process at my current company. Here, we develop custom projects for
+              customers. In those projects, we participate in the whole life time,
+              from planning to implementation and, obviously, going through its
+              development. Here, we use internal frameworks, C# / ASP.NET and
+              Javascript.
+              Finally, I still do freelance. As a freelance, I develop websites,
+              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
+              bootstrap, webflow and, recently, ReactJs.I'm Bruno Mileto, FullStack Developer, located at Brazil,
               with 2+ years of experience. I worked and studied different technologies,
               during this time. I currently work professionally using C# / ASP.NET
               and ReactJs.
@@ -105,6 +226,8 @@ const About = () => {
 
   const [selectedSubMenuItens, setSelectedSubMenuItens] = useState<SubMenuItens>();
 
+  const [selectedSubMenuItensDescriptionList, setSelectedSubMenuItensDescriptionList] = useState<string[]>([]);
+
   const [personalInfoMenu, contactsMenu] = aboutMenu;
 
   if (!selectedSubMenuItens) {
@@ -113,9 +236,28 @@ const About = () => {
       subMenu.items.forEach((item) => {
         if (item.name === "myBio") {
           setSelectedSubMenuItens(item);
+          setSelectedSubMenuItensDescriptionList(getSelectedSubMenuItensDescriptionList(item?.description));
         }
       });
     });
+  }
+
+  function getSelectedSubMenuItensDescriptionList(description: string): string[] {
+    const selectedSubMenuItensWordsList = description.split(" ");
+    const wordsList = [];
+    let words = "";
+
+    for (let index = 0; index < selectedSubMenuItensWordsList.length; index++) {
+      console.log("wordsList");
+      words += `${selectedSubMenuItensWordsList[index]} `;
+      if (words.length >= 2300) {
+        wordsList.push(words);
+        words = "";
+        console.log("wordsList", wordsList);
+      }
+    }
+    if (wordsList.length <= 0) wordsList.push(words);
+    return wordsList;
   }
 
   function handleSelectedMenu(name: string) {
@@ -125,6 +267,8 @@ const About = () => {
     setSelectedSubMenuName(selectedSubMenu!.name);
     setSelectedSubMenuItens(selectedSubMenu?.items.find((item) => item.name === name));
   }
+
+  const isLoadingData = !codeSnippetsData || codeSnippetsData.length <= 0;
 
   return (
     <div
@@ -217,7 +361,7 @@ const About = () => {
         id="content"
         className="mt-9 md:mt-0  md:text-sm  px-7 md:px-0 flex flex-col md:flex-row gap-9 md:gap-0 md:w-full"
       >
-        <section className="flex flex-col gap-4 md:gap-0 md:flex-1 md:w-full max-w-[700px]">
+        <section className="flex flex-col gap-4 md:gap-0 md:flex-1 md:w-full max-w-[900px]">
           <header
             id="content-header"
             className="md:flex  md:flex-row md:gap-3 md:border-b-1 
@@ -233,39 +377,27 @@ const About = () => {
               <CloseFillIcon size={20} className="" />
             </div>
           </header>
-          <div
-            className="md:overflow-scroll md:h-full md:pt-0 md:scrollbar 
-                      md:scrollbar-thumb-secondary-sky pb-6 md:pb-0 w-full "
-          >
-            <div className="h-full md:mr-4  md:pt-0 md:border-r-0 md:border-lines md:w-[calc(100vw/3)]">
-              <p
-                className="text-sm leading-7 md:px-4 md:mt-4 break-words md:border-r-1 w-full
-                        md:border-lines md:pb-6 whitespace-pre-line "
+          <div className="md:h-full md:pt-0 md:pb-0 w-full md:scrollbar md:scrollbar-thumb-secondary-sky ">
+            <div
+              className="h-full md:mr-4  md:pt-0 md:border-r-0 md:border-lines md:w-[calc(100vw/3)] 
+            2xl:max-w-[calc(100vw/4.5)] "
+            >
+              <div
+                className="text-sm leading-7 break-words  w-full md:h-full
+                        md:border-lines whitespace-pre-line "
               >
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-                {selectedSubMenuItens?.description}
-              </p>
+                {selectedSubMenuItensDescriptionList.map((description) => {
+                  return (
+                    <p key={description} className="md:px-4  md:pt-4 md:pb-6 md:border-r-1 md:border-lines h-full ">
+                      {description}
+                    </p>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
-        <section
-          id="code-snippet"
-          className="flex flex-col gap-7 md:gap-0 md:border-l-1 md:border-lines 
-                  md:w-full"
-        >
+        <section id="code-snippet" className="flex flex-col gap-7 md:gap-0 md:border-l-1 md:border-lines md:w-full">
           <div
             id="hidden"
             className="hidden md:flex  md:flex-row md:gap-3 md:border-b-1 
@@ -293,46 +425,52 @@ const About = () => {
                 id="code-snippet-content"
                 className="flex flex-col gap-12 md:gap-0 md:h-full md:pl-10 md:overflow-y-visible "
               >
-                {codeSnippetsData!.map((codeSnippet) => {
-                  return (
-                    <div
-                      id="snippet"
-                      key={codeSnippet.id}
-                      className="flex flex-col gap-3 w-full lg:items-center  2xl:items-center md:pr-10 
+                {isLoadingData ? (
+                  <div className="w-full h-[100vh] flex items-center justify-center">
+                    <Spinner />
+                  </div>
+                ) : (
+                  codeSnippetsData!.map((codeSnippet) => {
+                    return (
+                      <div
+                        id="snippet"
+                        key={codeSnippet.id}
+                        className="flex flex-col gap-3 w-full lg:items-center  2xl:items-center md:pr-10 
                        md:border-r-1 md:border-lines md:pt-12 pb-6"
-                    >
-                      <div className="flex flex-col gap-3 2xl:items-center">
-                        <div
-                          id="snippet-creator"
-                          className="flex flex-row items-center gap-3 md:w-full 2xl:w-full 
+                      >
+                        <div className="flex flex-col gap-3 2xl:items-center">
+                          <div
+                            id="snippet-creator"
+                            className="flex flex-row items-center gap-3 md:w-full 2xl:w-full 
                          2xl:max-w-[664px]"
-                        >
-                          <a
-                            className="text-secondary-blue font-bold text-sm flex flex-row items-center gap-3 md:w-full"
-                            target="_blank"
-                            href={`https://github.com/${codeSnippet.ownerLogin}`}
                           >
-                            <img src={userImg} />
-                            {codeSnippet.ownerLogin}
-                          </a>
-                        </div>
-                        <div
-                          id="snippet"
-                          className="bg-primary-darkMarine border-1 text-sm leading-7
+                            <a
+                              className="text-secondary-blue font-bold text-sm flex flex-row items-center gap-3 md:w-full"
+                              target="_blank"
+                              href={`https://github.com/${codeSnippet.ownerLogin}`}
+                            >
+                              <img src={codeSnippet.avatarUrl} className="w-10 h-10 rounded-full" />
+                              {codeSnippet.ownerLogin}
+                            </a>
+                          </div>
+                          <div
+                            id="snippet"
+                            className="bg-primary-darkMarine border-1 text-sm leading-7
                           font-extralight border-lines rounded-2xl p-6
                           md:max-w-[664px] lg:w-[calc(72vw/2)] xl:w-[calc(80vw/2)];"
-                        >
-                          <CodeSnippet codeType={codeSnippet.language} id="code">
-                            {codeSnippet.code!}
-                          </CodeSnippet>
-                        </div>
-                        <div id="description" className="border-t-1 w-full border-lines pt-3 md:max-w-[664px] ">
-                          <p className="text-xs w-full text-center">{codeSnippet.description}</p>
+                          >
+                            <CodeSnippet codeType={codeSnippet.language} id="code">
+                              {codeSnippet.code!}
+                            </CodeSnippet>
+                          </div>
+                          <div id="description" className="border-t-1 w-full border-lines pt-3 md:max-w-[664px] ">
+                            <p className="text-xs w-full text-center">{codeSnippet.description}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
             </div>
           </div>
