@@ -99,15 +99,11 @@ export const aboutMenu: Menu[] = [
 
 const About = () => {
   const codeSnippetsData = useCodeSnippets();
-  const [selectedMenuName, _] = useState<AboutMenuNames>(
-    AboutMenuNames.personalInfo
-  );
+  const [selectedMenuName, _] = useState<AboutMenuNames>(AboutMenuNames.personalInfo);
 
-  const [selectedSubMenuName, setSelectedSubMenuName] =
-    useState<AboutSubMenuNames>(AboutSubMenuNames.bio);
+  const [selectedSubMenuName, setSelectedSubMenuName] = useState<AboutSubMenuNames>(AboutSubMenuNames.bio);
 
-  const [selectedSubMenuItens, setSelectedSubMenuItens] =
-    useState<SubMenuItens>();
+  const [selectedSubMenuItens, setSelectedSubMenuItens] = useState<SubMenuItens>();
 
   const [personalInfoMenu, contactsMenu] = aboutMenu;
 
@@ -124,14 +120,10 @@ const About = () => {
 
   function handleSelectedMenu(name: string) {
     const [projectInfo, _] = aboutMenu;
-    const selectedSubMenu = projectInfo.subMenu.find((subMenu) =>
-      subMenu.items.find((item) => item.name === name)
-    );
+    const selectedSubMenu = projectInfo.subMenu.find((subMenu) => subMenu.items.find((item) => item.name === name));
 
     setSelectedSubMenuName(selectedSubMenu!.name);
-    setSelectedSubMenuItens(
-      selectedSubMenu?.items.find((item) => item.name === name)
-    );
+    setSelectedSubMenuItens(selectedSubMenu?.items.find((item) => item.name === name));
   }
 
   return (
@@ -159,15 +151,9 @@ const About = () => {
                 >
                   <ArrowRightSFillIcon
                     size={20}
-                    className={
-                      open
-                        ? "rotate-90 transform transition-transform duration-300"
-                        : ""
-                    }
+                    className={open ? "rotate-90 transform transition-transform duration-300" : ""}
                   />
-                  <span className=" text-secondary-white">
-                    {personalInfoMenu.name}
-                  </span>
+                  <span className=" text-secondary-white">{personalInfoMenu.name}</span>
                 </Disclosure.Button>
                 <Disclosure.Panel className="flex flex-col px-7 mt-1 mb-3">
                   {personalInfoMenu.subMenu.map((subMenu) => {
@@ -178,11 +164,7 @@ const About = () => {
                             <Disclosure.Button className="flex flex-row gap-1 items-center">
                               <ArrowRightSLineIcon
                                 size={16}
-                                className={
-                                  open
-                                    ? "rotate-90 transform transition-transform duration-300"
-                                    : ""
-                                }
+                                className={open ? "rotate-90 transform transition-transform duration-300" : ""}
                               />
                               <Folder
                                 size={13}
@@ -194,9 +176,7 @@ const About = () => {
                                     : "text-secondary-blue"
                                 }
                               />
-                              <span className="text-sm font-normal leading-6">
-                                {subMenu.name}
-                              </span>
+                              <span className="text-sm font-normal leading-6">{subMenu.name}</span>
                             </Disclosure.Button>
                             <Disclosure.Panel className="flex flex-col gap-1 items-start mt-1">
                               {subMenu.items.map((item) => {
@@ -208,14 +188,9 @@ const About = () => {
                                     key={item.name}
                                     className="flex flex-row gap-1 items-center"
                                   >
-                                    <ArrowRightSLineIcon
-                                      size={16}
-                                      className="text-transparent"
-                                    />
+                                    <ArrowRightSLineIcon size={16} className="text-transparent" />
                                     <File2FillIcon size={12} />
-                                    <span className="text-sm font-light leading-4">
-                                      {item.name}
-                                    </span>
+                                    <span className="text-sm font-light leading-4">{item.name}</span>
                                   </button>
                                 );
                               })}
@@ -240,26 +215,17 @@ const About = () => {
       </div>
       <div
         id="content"
-        className="mt-9 md:mt-0  md:text-sm  px-7 md:px-0 flex flex-col
-                 md:flex-row gap-9 md:gap-0 md:w-full overflow-y-hidden"
+        className="mt-9 md:mt-0  md:text-sm  px-7 md:px-0 flex flex-col md:flex-row gap-9 md:gap-0 md:w-full"
       >
-        <section className="flex flex-col gap-4 md:gap-0 md:flex-1 md:w-full max-w-[700px] ">
+        <section className="flex flex-col gap-4 md:gap-0 md:flex-1 md:w-full max-w-[700px]">
           <header
             id="content-header"
             className="md:flex  md:flex-row md:gap-3 md:border-b-1 
                    md:border-lines md:pl-2  md:w-full md:items-center "
           >
-            <span className="text-secondary-sky md:hidden">
-              \ {selectedMenuName}
-            </span>
-            <span className="text-secondary-sky md:hidden">
-              {" "}
-              \ {selectedSubMenuName}
-            </span>
-            <span className="text-secondary-white md:py-2">
-              {" "}
-              \ {selectedSubMenuItens?.name}
-            </span>
+            <span className="text-secondary-sky md:hidden">\ {selectedMenuName}</span>
+            <span className="text-secondary-sky md:hidden"> \ {selectedSubMenuName}</span>
+            <span className="text-secondary-white md:py-2"> \ {selectedSubMenuItens?.name}</span>
             <div
               className="hidden md:inline cursor-pointer ml-6 pr-4 border-r-1 
                           h-full border-lines md:py-2"
@@ -269,13 +235,12 @@ const About = () => {
           </header>
           <div
             className="md:overflow-scroll md:h-full md:pt-0 md:scrollbar 
-                      md:scrollbar-thumb-secondary-sky pb-6 md:pb-0 w-full"
+                      md:scrollbar-thumb-secondary-sky pb-6 md:pb-0 w-full "
           >
             <div className="h-full md:mr-4  md:pt-0 md:border-r-0 md:border-lines md:w-[calc(100vw/3)]">
               <p
                 className="text-sm leading-7 md:px-4 md:mt-4 break-words md:border-r-1 w-full
-                        md:border-lines md:pb-6 whitespace-pre-line
-                           "
+                        md:border-lines md:pb-6 whitespace-pre-line "
               >
                 {selectedSubMenuItens?.description}
                 {selectedSubMenuItens?.description}
@@ -322,9 +287,7 @@ const About = () => {
                         "
             >
               <header className="md:border-r-1 md:border-lines">
-                <span className="text-secondary-white md:text-secondary-sky md:px-10">
-                  // Code snippet showcase:{" "}
-                </span>
+                <span className="text-secondary-white md:text-secondary-sky md:px-10">// Code snippet showcase: </span>
               </header>
               <div
                 id="code-snippet-content"
@@ -359,20 +322,12 @@ const About = () => {
                           font-extralight border-lines rounded-2xl p-6
                           md:max-w-[664px] lg:w-[calc(72vw/2)] xl:w-[calc(80vw/2)];"
                         >
-                          <CodeSnippet
-                            codeType={codeSnippet.language}
-                            id="code"
-                          >
+                          <CodeSnippet codeType={codeSnippet.language} id="code">
                             {codeSnippet.code!}
                           </CodeSnippet>
                         </div>
-                        <div
-                          id="description"
-                          className="border-t-1 w-full border-lines pt-3 md:max-w-[664px] "
-                        >
-                          <p className="text-xs w-full text-center">
-                            {codeSnippet.description}
-                          </p>
+                        <div id="description" className="border-t-1 w-full border-lines pt-3 md:max-w-[664px] ">
+                          <p className="text-xs w-full text-center">{codeSnippet.description}</p>
                         </div>
                       </div>
                     </div>
