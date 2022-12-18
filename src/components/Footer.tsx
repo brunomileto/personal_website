@@ -3,7 +3,7 @@ import LinkedinFillIcon from 'remixicon-react/LinkedinFillIcon';
 
 export function Footer() {
   return (
-    <footer className="flex border-t-1 items-center rounded-b-lg border-lines">
+    <footer className="h-[55px] flex border-t-1 items-center rounded-b-lg border-lines">
       <div className="flex-1 ml-4 my-4">
         <span>find me in: </span>
       </div>

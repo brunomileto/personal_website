@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GistContextType } from '../../contexts/CodesContext';
+import { GistContextType } from '../../context/CodesContext';
 
 export const githubApi = axios.create({
   baseURL: "https://api.github.com",
@@ -8,7 +8,7 @@ export const githubApi = axios.create({
 
 export const githubBasicHeaders = {
   Accept: "application/vnd.github+json",
-  Authorization: `Bearer ${import.meta.env.VITE_GITHUB_GIST_TOKEN}`,
+  Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_GIST_TOKEN}`,
 };
 
 export const githubApiPaths = {

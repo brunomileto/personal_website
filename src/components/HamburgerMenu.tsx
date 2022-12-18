@@ -1,11 +1,10 @@
 import Hamburger from 'hamburger-react';
+import Link from 'next/link';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 
 import * as Popover from '@radix-ui/react-popover';
 
-import { pages } from '../Router';
-import { Header } from './Header';
+import { pages } from '../utils/pages';
 
 export function HamburgerMenu() {
   const [isHamburgerOpen, setHamburgerOpen] = useState<boolean>(false);
@@ -27,14 +26,15 @@ export function HamburgerMenu() {
         <div className="flex flex-col bg-primary-marine ">
           {Object.values(pages).map((page) => {
             return (
-              <NavLink
-                onClick={() => setHamburgerOpen(false)}
-                key={page.name}
-                className="p-4  border-b-1  border-lines text-secondary-white/70 "
-                to={page.path}
-              >
-                {page.name}
-              </NavLink>
+              <Link key={page.name} href={page.path} passHref>
+                <a
+                  title={page.name}
+                  onClick={() => setHamburgerOpen(false)}
+                  className="p-4  border-b-1  border-lines text-secondary-white/70 "
+                >
+                  {page.name}
+                </a>
+              </Link>
             );
           })}
         </div>
