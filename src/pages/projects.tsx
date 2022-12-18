@@ -1,19 +1,31 @@
-import Image from 'next/image';
-import { useState } from 'react';
-import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
-import CheckFillIcon from 'remixicon-react/CheckFillIcon';
-import CloseFillIcon from 'remixicon-react/CloseFillIcon';
+import Image from "next/image";
+import { useState } from "react";
+import ArrowRightSFillIcon from "remixicon-react/ArrowRightSFillIcon";
+import CheckFillIcon from "remixicon-react/CheckFillIcon";
+import CloseFillIcon from "remixicon-react/CloseFillIcon";
 
-import { useQuery } from '@apollo/client/react/hooks';
-import { Disclosure } from '@headlessui/react';
+import { useQuery } from "@apollo/client/react/hooks";
+import { Disclosure } from "@headlessui/react";
 import {
-    Automattic, Csharp, CssThree, Django, Express, Html5, Javascript, Nodedotjs, Openapiinitiative,
-    Python, ReactJs, Styledcomponents, Tailwindcss, Typescript
-} from '@icons-pack/react-simple-icons';
-import * as Checkbox from '@radix-ui/react-checkbox';
+  Automattic,
+  Csharp,
+  CssThree,
+  Django,
+  Express,
+  Html5,
+  Javascript,
+  Nodedotjs,
+  Openapiinitiative,
+  Python,
+  ReactJs,
+  Styledcomponents,
+  Tailwindcss,
+  Typescript,
+} from "@icons-pack/react-simple-icons";
+import * as Checkbox from "@radix-ui/react-checkbox";
 
-import { Spinner } from '../components/Spinner';
-import { GET_ALL_PROJECTS_SIMPLE_QUERY } from '../libs/apollo/apolloQueries';
+import { Spinner } from "../components/Spinner";
+import { GET_ALL_PROJECTS_SIMPLE_QUERY } from "../libs/apollo/apolloQueries";
 
 const ProjectTypeNamesArray = [
   "Automation",
@@ -159,11 +171,7 @@ const Projects = () => {
     setProjectTypes(actualizedProjectTypes);
   }
 
-  const { data, loading, error } = useQuery<GetProjectsQueryResponse>(
-    GET_ALL_PROJECTS_SIMPLE_QUERY
-  );
-
-  console.log("data", data);
+  const { data, loading, error } = useQuery<GetProjectsQueryResponse>(GET_ALL_PROJECTS_SIMPLE_QUERY);
 
   const selectedTypes = projectTypes.filter((type) => type.isSelected);
 
@@ -171,10 +179,7 @@ const Projects = () => {
 
   if (selectedTypes.length > 0) {
     data?.projects.forEach((project) => {
-      console.log("project", project);
-      if (
-        selectedTypes.some((value) => project.projectTypes.includes(value.type))
-      ) {
+      if (selectedTypes.some((value) => project.projectTypes.includes(value.type))) {
         selectedProjects?.push(project);
       }
     });
@@ -184,15 +189,8 @@ const Projects = () => {
 
   const formattedSelectedTypes =
     selectedTypes.length > 3
-      ? [
-          ...selectedTypes
-            .slice(0, 3)
-            .map((selectedType) => `"${selectedType.type}"`),
-          "...",
-        ].join(", ")
-      : selectedTypes
-          .map((selectedType) => `"${selectedType.type}"`)
-          .join(", ");
+      ? [...selectedTypes.slice(0, 3).map((selectedType) => `"${selectedType.type}"`), "..."].join(", ")
+      : selectedTypes.map((selectedType) => `"${selectedType.type}"`).join(", ");
 
   return (
     <main
@@ -220,11 +218,7 @@ const Projects = () => {
                 >
                   <ArrowRightSFillIcon
                     size={20}
-                    className={
-                      open
-                        ? "rotate-90 transform transition-transform duration-300"
-                        : ""
-                    }
+                    className={open ? "rotate-90 transform transition-transform duration-300" : ""}
                   />
                   <span className=" text-secondary-white">projects</span>
                 </Disclosure.Button>
@@ -244,9 +238,7 @@ const Projects = () => {
                             checked={projectType.isSelected}
                             name={projectType.type}
                             id={projectType.type}
-                            onCheckedChange={() =>
-                              handleSelectedType(projectType)
-                            }
+                            onCheckedChange={() => handleSelectedType(projectType)}
                             className="bg-transparent border-1 border-secondary-sky 
                                                 w-5 h-5 rounded-sm md:w-4 md:h-4"
                           >
@@ -257,25 +249,12 @@ const Projects = () => {
                               <CheckFillIcon className="w-fit h-fit" />
                             </Checkbox.Indicator>
                           </Checkbox.Root>
-                          <label
-                            htmlFor={projectType.type}
-                            className="flex gap-2 items-center"
-                          >
+                          <label htmlFor={projectType.type} className="flex gap-2 items-center">
                             <projectType.icon
                               size={18}
-                              className={`${
-                                projectType.isSelected
-                                  ? "text-secondary-sky"
-                                  : "text-secondary-sky/50"
-                              }`}
+                              className={`${projectType.isSelected ? "text-secondary-sky" : "text-secondary-sky/50"}`}
                             />
-                            <span
-                              className={`${
-                                projectType.isSelected
-                                  ? "text-white"
-                                  : "text-secondary-sky"
-                              }`}
-                            >
+                            <span className={`${projectType.isSelected ? "text-white" : "text-secondary-sky"}`}>
                               {projectType.type}
                             </span>
                           </label>
@@ -306,9 +285,7 @@ const Projects = () => {
                      md:border-lines md:pl-2  md:w-full md:items-center "
             >
               <span className="text-secondary-white md:py-2">\\ projects </span>
-              <span className="text-secondary-sky md:py-2">
-                \ [{formattedSelectedTypes}]
-              </span>
+              <span className="text-secondary-sky md:py-2">\ [{formattedSelectedTypes}]</span>
               <div
                 className="hidden md:inline cursor-pointer ml-6 pr-4 border-r-1 
                             h-full border-lines md:py-2"
@@ -334,9 +311,7 @@ const Projects = () => {
                         className="flex flex-col items-center gap-4 w-full max-w-[400px] "
                       >
                         <header className="w-full text-sm">
-                          <span className="text-secondary-blue font-bold">
-                            Project {index + 1}
-                          </span>
+                          <span className="text-secondary-blue font-bold">Project {index + 1}</span>
                           <span> / {selectedProject.shortname}</span>
                         </header>
                         <div
@@ -346,18 +321,11 @@ const Projects = () => {
                         >
                           <div className="h-full relative">
                             <div className="h-full w-full border-b-1 border-lines">
-                              <Image
-                                layout="fill"
-                                src={selectedProject.coverPicture.url}
-                              />
+                              <Image layout="fill" src={selectedProject.coverPicture.url} />
                             </div>
                             <div className="absolute right-4 top-2 flex flex-col gap-2">
                               {ProjectTypes.map((type) => {
-                                if (
-                                  selectedProject.projectTypes.includes(
-                                    type.type
-                                  )
-                                ) {
+                                if (selectedProject.projectTypes.includes(type.type)) {
                                   return (
                                     <div
                                       key={type.type}
@@ -373,10 +341,7 @@ const Projects = () => {
                             </div>
                           </div>
                           <div className="h-[90%] pt-7 mt-6 pb-8 pl-8 flex flex-col gap-6">
-                            <span>
-                              Duis aute irure dolor in velit esse cillum
-                              incididunt ut labore.
-                            </span>
+                            <span>Duis aute irure dolor in velit esse cillum incididunt ut labore.</span>
                             <div>
                               <button
                                 className="bg-lines text-secondary-white text-sm py-2 

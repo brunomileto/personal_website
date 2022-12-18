@@ -1,13 +1,11 @@
 import type { NextPage } from "next";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
-import { CodeSnippet } from '../components/CodeSnippet';
-import { SnippetsSwiper } from '../components/SnippetSwiper';
+import { CodeSnippet } from "../components/CodeSnippet";
+import { SnippetsSwiper } from "../components/SnippetSwiper";
 
 const Home: NextPage = () => {
   const route = useRouter();
-  console.log(route.asPath);
-  const currentUrl = route.basePath + route.pathname;
   return (
     <section
       className="w-full h-[calc(100vh-200px)] flex justify-center 
