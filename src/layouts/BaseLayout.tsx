@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { BaseHead } from '../components/BaseHead';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
-import { pages } from '../utils/pages';
+import { usePages } from '../context/PageNamesContext';
 
 interface BaseLayoutProps {
   children: ReactNode;
@@ -12,6 +12,7 @@ interface BaseLayoutProps {
 
 export function BaseLayout({ children }: BaseLayoutProps) {
   const router = useRouter();
+  const { pages } = usePages();
   const isHomePage = router.pathname === pages.home.path;
   return (
     <>

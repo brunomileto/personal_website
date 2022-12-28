@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-import { pages } from '../utils/pages';
+import { usePages } from '../context/PageNamesContext';
 import { HamburgerMenu } from './HamburgerMenu';
 
 export function Header() {
+  const { isLoading, pages } = usePages();
   const router = useRouter();
   const actualPath = router.pathname;
   return (
@@ -28,11 +30,7 @@ export function Header() {
               title={pages.home.name}
               className={` border-l-1 border-l-lines border-b-2 border-b-transparent
              p-4 h-full hover:text-secondary-white/80 transition-colors delay-150
-             ${
-               actualPath == pages.home.path
-                 ? "border-b-accent-orange"
-                 : "hover:border-b-accent-orange"
-             }`}
+             ${actualPath == pages.home.path ? "border-b-accent-orange" : "hover:border-b-accent-orange"}`}
             >
               {pages.home.name}
             </a>
@@ -42,11 +40,7 @@ export function Header() {
               title={pages.about.name}
               className={` border-l-1 border-l-lines border-b-2 border-b-transparent
              p-4 h-full hover:text-secondary-white/80 transition-colors delay-150
-             ${
-               actualPath == pages.about.path
-                 ? "border-b-accent-orange"
-                 : "hover:border-b-accent-orange"
-             }`}
+             ${actualPath == pages.about.path ? "border-b-accent-orange" : "hover:border-b-accent-orange"}`}
             >
               {pages.about.name}
             </a>
@@ -56,11 +50,7 @@ export function Header() {
               title={pages.projects.name}
               className={` border-x-1 border-x-lines border-b-2 border-b-transparent
              p-4 h-full hover:text-secondary-white/80 transition-colors delay-150
-             ${
-               actualPath == pages.projects.path
-                 ? "border-b-accent-orange"
-                 : "hover:border-b-accent-orange"
-             }`}
+             ${actualPath == pages.projects.path ? "border-b-accent-orange" : "hover:border-b-accent-orange"}`}
             >
               {pages.projects.name}
             </a>
@@ -72,11 +62,7 @@ export function Header() {
             className={` hidden md:block border-l-1 border-l-lines border-b-2 
           border-b-transparent p-4 h-full hover:text-secondary-white/80 
           transition-colors delay-150
-           ${
-             actualPath == pages.contact.path
-               ? "border-b-accent-orange"
-               : "hover:border-b-accent-orange"
-           }`}
+           ${actualPath == pages.contact.path ? "border-b-accent-orange" : "hover:border-b-accent-orange"}`}
           >
             {pages.contact.name}
           </a>

@@ -1,31 +1,21 @@
-import Image from "next/image";
-import { useState } from "react";
-import ArrowRightSFillIcon from "remixicon-react/ArrowRightSFillIcon";
-import CheckFillIcon from "remixicon-react/CheckFillIcon";
-import CloseFillIcon from "remixicon-react/CloseFillIcon";
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
+import CheckFillIcon from 'remixicon-react/CheckFillIcon';
+import CloseFillIcon from 'remixicon-react/CloseFillIcon';
 
-import { useQuery } from "@apollo/client/react/hooks";
-import { Disclosure } from "@headlessui/react";
+import { useQuery } from '@apollo/client/react/hooks';
+import { Disclosure } from '@headlessui/react';
 import {
-  Automattic,
-  Csharp,
-  CssThree,
-  Django,
-  Express,
-  Html5,
-  Javascript,
-  Nodedotjs,
-  Openapiinitiative,
-  Python,
-  ReactJs,
-  Styledcomponents,
-  Tailwindcss,
-  Typescript,
-} from "@icons-pack/react-simple-icons";
-import * as Checkbox from "@radix-ui/react-checkbox";
+    Automattic, Csharp, CssThree, Django, Express, Html5, Javascript, Nodedotjs, Openapiinitiative,
+    Python, ReactJs, Styledcomponents, Tailwindcss, Typescript
+} from '@icons-pack/react-simple-icons';
+import * as Checkbox from '@radix-ui/react-checkbox';
 
-import { Spinner } from "../components/Spinner";
-import { GET_ALL_PROJECTS_SIMPLE_QUERY } from "../libs/apollo/apolloQueries";
+import { Spinner } from '../components/Spinner';
+import { useLocale } from '../context/LocaleContext';
+import { GET_ALL_PROJECTS_SIMPLE_QUERY } from '../libs/apollo/apolloQueries';
 
 const ProjectTypeNamesArray = [
   "Automation",
@@ -158,6 +148,7 @@ interface GetProjectsQueryResponse {
 
 const Projects = () => {
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>(ProjectTypes);
+  const { isPtBr, locale } = useLocale();
 
   function handleSelectedType(selectedType: ProjectType) {
     const actualizedProjectTypes = [
@@ -170,22 +161,27 @@ const Projects = () => {
     ];
     setProjectTypes(actualizedProjectTypes);
   }
-
-  const { data, loading, error } = useQuery<GetProjectsQueryResponse>(GET_ALL_PROJECTS_SIMPLE_QUERY);
+  const { data, loading, error } = useQuery<GetProjectsQueryResponse>(GET_ALL_PROJECTS_SIMPLE_QUERY, {
+    variables: { locales: [locale] },
+  });
 
   const selectedTypes = projectTypes.filter((type) => type.isSelected);
 
   let selectedProjects: ProjectQuery[] | undefined = [];
 
-  if (selectedTypes.length > 0) {
-    data?.projects.forEach((project) => {
-      if (selectedTypes.some((value) => project.projectTypes.includes(value.type))) {
-        selectedProjects?.push(project);
-      }
-    });
-  } else {
-    selectedProjects = data?.projects;
-  }
+  data?.projects.forEach((project) => {
+    if (selectedTypes.length > 0 && selectedTypes.some((value) => project.projectTypes.includes(value.type))) {
+      selectedProjects?.push({
+        ...project,
+        coverPicture: { url: !project.coverPicture ? "/" : project.coverPicture.url },
+      });
+    } else {
+      selectedProjects?.push({
+        ...project,
+        coverPicture: { url: !project.coverPicture ? "/" : project.coverPicture.url },
+      });
+    }
+  });
 
   const formattedSelectedTypes =
     selectedTypes.length > 3
@@ -198,7 +194,7 @@ const Projects = () => {
                  md:overflow-hidden overflow-scroll mb-0"
     >
       <div id="title" className="px-7 pt-6 pb-8 md:hidden">
-        <span className="text-secondary-white">_projects</span>
+        <span className="text-secondary-white">{isPtBr ? "_projetos" : "_projects"}</span>
       </div>
       <div
         id="lateralMenu"
@@ -220,7 +216,7 @@ const Projects = () => {
                     size={20}
                     className={open ? "rotate-90 transform transition-transform duration-300" : ""}
                   />
-                  <span className=" text-secondary-white">projects</span>
+                  <span className=" text-secondary-white">{isPtBr ? "projetos" : "projects"}</span>
                 </Disclosure.Button>
                 <Disclosure.Panel
                   className="flex flex-col pl-9 md:pl-4 mt-3 mb-4 
@@ -284,7 +280,7 @@ const Projects = () => {
               className="md:flex  md:flex-row md:gap-3 md:border-b-1 
                      md:border-lines md:pl-2  md:w-full md:items-center "
             >
-              <span className="text-secondary-white md:py-2">\\ projects </span>
+              <span className="text-secondary-white md:py-2">{isPtBr ? "\\\\ projetos" : "\\ projects"} </span>
               <span className="text-secondary-sky md:py-2">\ [{formattedSelectedTypes}]</span>
               <div
                 className="hidden md:inline cursor-pointer ml-6 pr-4 border-r-1 
@@ -311,7 +307,9 @@ const Projects = () => {
                         className="flex flex-col items-center gap-4 w-full max-w-[400px] "
                       >
                         <header className="w-full text-sm">
-                          <span className="text-secondary-blue font-bold">Project {index + 1}</span>
+                          <span className="text-secondary-blue font-bold">
+                            {isPtBr ? "Projeto" : "Project"} {index + 1}
+                          </span>
                           <span> / {selectedProject.shortname}</span>
                         </header>
                         <div
@@ -321,7 +319,7 @@ const Projects = () => {
                         >
                           <div className="h-full relative">
                             <div className="h-full w-full border-b-1 border-lines">
-                              <Image layout="fill" src={selectedProject.coverPicture.url} />
+                              <Image layout="fill" src={selectedProject.coverPicture.url || ""} />
                             </div>
                             <div className="absolute right-4 top-2 flex flex-col gap-2">
                               {ProjectTypes.map((type) => {
@@ -341,13 +339,13 @@ const Projects = () => {
                             </div>
                           </div>
                           <div className="h-[90%] pt-7 mt-6 pb-8 pl-8 flex flex-col gap-6">
-                            <span>Duis aute irure dolor in velit esse cillum incididunt ut labore.</span>
+                            <span>{selectedProject.shortDescription}</span>
                             <div>
                               <button
                                 className="bg-lines text-secondary-white text-sm py-2 
                                                   px-3 rounded"
                               >
-                                view_project
+                                {isPtBr ? "ver_projeto" : "view_project"}
                               </button>
                             </div>
                           </div>
