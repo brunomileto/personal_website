@@ -3,6 +3,7 @@ import CloseFillIcon from 'remixicon-react/CloseFillIcon';
 
 import emailjs from '@emailjs/browser';
 
+import { useLocale } from '../context/LocaleContext';
 import { Spinner } from './Spinner';
 
 interface Props {
@@ -12,18 +13,13 @@ interface Props {
   handleFormDataChange: (name: string, email: string, message: string) => void;
 }
 
-export function ContactForm({
-  email,
-  message,
-  name,
-  handleFormDataChange,
-}: Props) {
+export function ContactForm({ email, message, name, handleFormDataChange }: Props) {
   const form = useRef<HTMLFormElement>(null);
+  const { isPtBr } = useLocale();
   const [isSendingEmail, setIsSendingEmail] = useState<boolean>(false);
   const [emailSended, setEmailSended] = useState<boolean>(false);
   const [emailSendedError, setEmailSendedError] = useState<boolean>(false);
-  const [isSubmitFormButtonDisabled, setSubmitFormButtonDisabled] =
-    useState<boolean>(true);
+  const [isSubmitFormButtonDisabled, setSubmitFormButtonDisabled] = useState<boolean>(true);
 
   function sendEmail(e: React.FormEvent) {
     e.preventDefault();
@@ -32,33 +28,22 @@ export function ContactForm({
     const emailJsTemplateKey = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_KEY;
     const emailJsPublicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-    emailjs
-      .sendForm(
-        emailJsServiceKey!,
-        emailJsTemplateKey!,
-        form.current!,
-        emailJsPublicKey!
-      )
-      .then(
-        (result) => {
-          console.log(result);
-          setIsSendingEmail(false);
-          setEmailSended(true);
-          handleFormDataChange("", "", "");
-        },
-        (error) => {
-          console.log(error);
-          setEmailSended(false);
-          handleFormDataChange("", "", "");
-        }
-      );
+    emailjs.sendForm(emailJsServiceKey!, emailJsTemplateKey!, form.current!, emailJsPublicKey!).then(
+      (result) => {
+        console.log(result);
+        setIsSendingEmail(false);
+        setEmailSended(true);
+        handleFormDataChange("", "", "");
+      },
+      (error) => {
+        console.log(error);
+        setEmailSended(false);
+        handleFormDataChange("", "", "");
+      }
+    );
   }
 
-  function handleSubmitFormButtonState(
-    name: string,
-    email: string,
-    message: string
-  ) {
+  function handleSubmitFormButtonState(name: string, email: string, message: string) {
     setSubmitFormButtonDisabled(name === "" || email === "" || message === "");
   }
 
@@ -69,7 +54,7 @@ export function ContactForm({
         className="hidden md:flex  md:flex-row md:gap-3 md:border-b-1 
                  md:border-lines md:pl-2  md:w-full md:items-center "
       >
-        <span className="text-secondary-white md:py-2"> \ {"contacts"}</span>
+        <span className="text-secondary-white md:py-2"> \ {isPtBr ? "contato" : "contact"}</span>
         <div
           className="hidden md:inline cursor-pointer ml-6 pr-4 border-r-1 
                         h-full border-lines md:py-2"
@@ -88,19 +73,15 @@ export function ContactForm({
           {isSendingEmail ? (
             <Spinner />
           ) : emailSended ? (
-            <div
-              id="ThanksWrapper"
-              className="flex flex-col items-center w-full gap-6 mt-4"
-            >
+            <div id="ThanksWrapper" className="flex flex-col items-center w-full gap-6 mt-4">
               <div className="">
-                <span className="text-secondary-white text-3xl">
-                  Thank you! 🤘
-                </span>
+                <span className="text-secondary-white text-3xl">{isPtBr ? "Obrigado!" : "Thank you!"} 🤘</span>
               </div>
               <div className="w-full flex justify-center">
                 <span className="text-center">
-                  Your message has been accepted. You will recieve answer really
-                  soon!
+                  {isPtBr
+                    ? "Sua mensagem foi enviada. Te enviarei uma resposta em breve!"
+                    : "Your message has been sendend. You will recieve answer really soon!"}
                 </span>
               </div>
               <div>
@@ -108,7 +89,7 @@ export function ContactForm({
                   onClick={() => setEmailSended(false)}
                   className="px-5 py-3 rounded-lg bg-lines text-secondary-white"
                 >
-                  send_new_message
+                  {isPtBr ? "enviar_nova_mensagem" : "send_new_message"}
                 </button>
               </div>
             </div>
@@ -122,7 +103,7 @@ export function ContactForm({
               className="text-sm leading-7 md:px-4 flex flex-col gap-6 md:w-full md:max-w-md"
             >
               <div id="name_wrapper" className="flex flex-col w-full gap-3">
-                <label htmlFor="name">_name:</label>
+                <label htmlFor="name">{isPtBr ? "_nome" : "_name"}:</label>
                 <input
                   id="name"
                   value={name}
@@ -150,7 +131,7 @@ export function ContactForm({
                 />
               </div>
               <div id="message_wrapper" className="flex flex-col w-full gap-3">
-                <label htmlFor="message">_message:</label>
+                <label htmlFor="message">{isPtBr ? "_mensagem" : "_message"}:</label>
                 <textarea
                   id="message"
                   value={message}
@@ -170,7 +151,7 @@ export function ContactForm({
                   className="px-3 py-[5px] bg-lines rounded-md text-secondary-white
                            disabled:text-secondary-white/40"
                 >
-                  submit_message
+                  {isPtBr ? "enviar_mensagem" : "submit_message"}
                 </button>
               </div>
             </form>

@@ -162,7 +162,7 @@ const About = () => {
         <DisclosureMenuLinks
           menuName={isPtBr ? "contatos" : "contacts"}
           links={[
-            { name: "brunomileto@outlook.com", href: "#", icon: MailFillIcon },
+            { name: "bruno_mileto@outlook.com", href: "#", icon: MailFillIcon },
             { name: "+5562992861675", href: "#", icon: PhoneFillIcon },
           ]}
         />
