@@ -1,31 +1,20 @@
-import Image from "next/image";
-import { useState } from "react";
-import ArrowRightSFillIcon from "remixicon-react/ArrowRightSFillIcon";
-import CheckFillIcon from "remixicon-react/CheckFillIcon";
-import CloseFillIcon from "remixicon-react/CloseFillIcon";
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
+import CheckFillIcon from 'remixicon-react/CheckFillIcon';
+import CloseFillIcon from 'remixicon-react/CloseFillIcon';
 
-import { useQuery } from "@apollo/client/react/hooks";
-import { Disclosure } from "@headlessui/react";
+import { useQuery } from '@apollo/client/react/hooks';
+import { Disclosure } from '@headlessui/react';
 import {
-  Automattic,
-  Csharp,
-  CssThree,
-  Django,
-  Express,
-  Html5,
-  Javascript,
-  Nodedotjs,
-  Openapiinitiative,
-  Python,
-  ReactJs,
-  Styledcomponents,
-  Tailwindcss,
-  Typescript,
-} from "@icons-pack/react-simple-icons";
-import * as Checkbox from "@radix-ui/react-checkbox";
+    Automattic, Csharp, CssThree, Django, Express, Html5, Javascript, Nodedotjs, Openapiinitiative,
+    Python, ReactJs, Styledcomponents, Tailwindcss, Typescript
+} from '@icons-pack/react-simple-icons';
+import * as Checkbox from '@radix-ui/react-checkbox';
 
-import { Spinner } from "../components/Spinner";
-import { GET_ALL_PROJECTS_SIMPLE_QUERY } from "../libs/apollo/apolloQueries";
+import { Spinner } from '../components/Spinner';
+import { GET_ALL_PROJECTS_SIMPLE_QUERY } from '../libs/apollo/apolloQueries';
 
 const ProjectTypeNamesArray = [
   "Automation",
@@ -158,6 +147,8 @@ interface GetProjectsQueryResponse {
 
 const Projects = () => {
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>(ProjectTypes);
+  const router = useRouter();
+  const locale = router.locale === "pt-BR" ? "pt_BR" : router.locale;
 
   function handleSelectedType(selectedType: ProjectType) {
     const actualizedProjectTypes = [
@@ -170,22 +161,40 @@ const Projects = () => {
     ];
     setProjectTypes(actualizedProjectTypes);
   }
-
-  const { data, loading, error } = useQuery<GetProjectsQueryResponse>(GET_ALL_PROJECTS_SIMPLE_QUERY);
+  const { data, loading, error } = useQuery<GetProjectsQueryResponse>(GET_ALL_PROJECTS_SIMPLE_QUERY, {
+    variables: { locales: [locale] },
+  });
 
   const selectedTypes = projectTypes.filter((type) => type.isSelected);
 
   let selectedProjects: ProjectQuery[] | undefined = [];
 
-  if (selectedTypes.length > 0) {
-    data?.projects.forEach((project) => {
-      if (selectedTypes.some((value) => project.projectTypes.includes(value.type))) {
-        selectedProjects?.push(project);
-      }
-    });
-  } else {
-    selectedProjects = data?.projects;
-  }
+  data?.projects.forEach((project) => {
+    if (selectedTypes.length > 0 && selectedTypes.some((value) => project.projectTypes.includes(value.type))) {
+      selectedProjects?.push({
+        ...project,
+        coverPicture: { url: !project.coverPicture ? "/" : project.coverPicture.url },
+      });
+    } else {
+      selectedProjects?.push({
+        ...project,
+        coverPicture: { url: !project.coverPicture ? "/" : project.coverPicture.url },
+      });
+    }
+  });
+
+  // if (selectedTypes.length > 0) {
+  //   data?.projects.forEach((project) => {
+  //     if (selectedTypes.some((value) => project.projectTypes.includes(value.type))) {
+  //       selectedProjects?.push({
+  //         ...project,
+  //         coverPicture: { url: !project.coverPicture.url ? "/" : project.coverPicture.url },
+  //       });
+  //     }
+  //   });
+  // } else {
+  //   selectedProjects = data?.projects;
+  // }
 
   const formattedSelectedTypes =
     selectedTypes.length > 3
@@ -321,7 +330,7 @@ const Projects = () => {
                         >
                           <div className="h-full relative">
                             <div className="h-full w-full border-b-1 border-lines">
-                              <Image layout="fill" src={selectedProject.coverPicture.url} />
+                              <Image layout="fill" src={selectedProject.coverPicture.url || ""} />
                             </div>
                             <div className="absolute right-4 top-2 flex flex-col gap-2">
                               {ProjectTypes.map((type) => {

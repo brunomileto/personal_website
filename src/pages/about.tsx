@@ -1,151 +1,170 @@
-import { NextPage } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import ArrowRightSFillIcon from "remixicon-react/ArrowRightSFillIcon";
-import ArrowRightSLineIcon from "remixicon-react/ArrowRightSLineIcon";
-import CloseFillIcon from "remixicon-react/CloseFillIcon";
-import File2FillIcon from "remixicon-react/File2FillIcon";
-import Folder from "remixicon-react/Folder2FillIcon";
-import MailFillIcon from "remixicon-react/MailFillIcon";
-import PhoneFillIcon from "remixicon-react/PhoneFillIcon";
+import { NextPage } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
+import ArrowRightSLineIcon from 'remixicon-react/ArrowRightSLineIcon';
+import CloseFillIcon from 'remixicon-react/CloseFillIcon';
+import File2FillIcon from 'remixicon-react/File2FillIcon';
+import Folder from 'remixicon-react/Folder2FillIcon';
+import MailFillIcon from 'remixicon-react/MailFillIcon';
+import PhoneFillIcon from 'remixicon-react/PhoneFillIcon';
 
-import { Disclosure } from "@headlessui/react";
+import { useQuery } from '@apollo/client';
+import { Disclosure } from '@headlessui/react';
 
-import userImg from "../assets/userImg.png";
-import { CodeSnippet } from "../components/CodeSnippet";
-import { DisclosureMenuLinks } from "../components/DisclosureMenuLinks";
-import { Spinner } from "../components/Spinner";
-import { useCodeSnippets } from "../context/CodesContext";
+import userImg from '../assets/userImg.png';
+import { CodeSnippet } from '../components/CodeSnippet';
+import { DisclosureMenuLinks } from '../components/DisclosureMenuLinks';
+import { Spinner } from '../components/Spinner';
+import { useCodeSnippets } from '../context/CodesContext';
+import {
+    AboutMenuNames, AboutMenus, AboutSubMenuItems, AboutSubMenuNames, GetAboutMenusQueryResponse,
+    useAboutMenu
+} from '../hooks/useAboutMenu';
+import { GET_ABOUT_MENU } from '../libs/apollo/apolloQueries';
 
-export enum AboutMenuNames {
-  personalInfo = "personal_info",
-  contacts = "contacts",
-}
+// interface Menu {
+//   name: AboutMenuNames;
+//   subMenu: SubMenu[];
+// }
 
-export enum AboutSubMenuNames {
-  bio = "bio",
-  interests = "interests",
-  education = "education",
-}
+// interface SubMenu {
+//   name: AboutSubMenuNames;
+//   items: SubMenuItens[];
+// }
 
-interface Menu {
-  name: AboutMenuNames;
-  subMenu: SubMenu[];
-}
+// export interface SubMenuItens {
+//   name: string;
+//   description: string;
+// }
 
-interface SubMenu {
-  name: AboutSubMenuNames;
-  items: SubMenuItens[];
-}
-
-export interface SubMenuItens {
-  name: string;
-  description: string;
-}
-
-export const aboutMenu: Menu[] = [
-  {
-    name: AboutMenuNames.personalInfo,
-    subMenu: [
-      {
-        name: AboutSubMenuNames.bio,
-        items: [
-          {
-            name: "myBio",
-            description: `I'm Bruno Mileto, FullStack Developer, located at Brazil, with 2+ years of experience. I worked and studied different technologies,
-              during this time. I currently work professionally using C# / ASP.NET
-              and ReactJs.
-              I was introduced to the Dev world by a professor during my mechanical
-              engineering bachelor. I still finished the course and even worked
-              two years as a mechanical engineer but I decided to change my career
-              and became a Dev.
-              First, I studied and did freelancer projects with Python and Django
-              and, through those projects, I got a job as a Dev. The company uses
-              Delphi and C# /ASP.Net, and I did projects and client support for a
-              legacy business management system.
-              Later, I was contacted via LinkedIn to participate in a selection
-              process at my current company. Here, we develop custom projects for
-              customers. In those projects, we participate in the whole life time,
-              from planning to implementation and, obviously, going through its
-              development. Here, we use internal frameworks, C# / ASP.NET and
-              Javascript.
-              Finally, I still do freelance. As a freelance, I develop websites,
-              usually landing pages and SPAs, using pure HTML/CSS/Javascript,
-              bootstrap, webflow and, recently, ReactJs.
-              `,
-          },
-        ],
-      },
-      {
-        name: AboutSubMenuNames.education,
-        items: [
-          { name: "university", description: "alsdkjaksjdlkasd" },
-          { name: "courses", description: "ajksdhkajsdhkajsh" },
-        ],
-      },
-      {
-        name: AboutSubMenuNames.interests,
-        items: [
-          { name: "sports", description: "alsdkjaksjdlkasd" },
-          { name: "technology", description: "ajksdhkajsdhkajsh" },
-          { name: "daily", description: "ajksdhkajsdhkajsh" },
-        ],
-      },
-    ],
-  },
-  { name: AboutMenuNames.contacts, subMenu: [] },
-];
+// export const aboutMenu: Menu[] = [
+//   {
+//     name: AboutMenuNames.personalInfo,
+//     subMenu: [
+//       {
+//         name: AboutSubMenuNames.bio,
+//         items: [
+//           {
+//             name: "myBio",
+//             description: `I'm Bruno Mileto, FullStack Developer, located at Brazil, with 2+ years of experience. I worked and studied different technologies,
+//               during this time. I currently work professionally using C# / ASP.NET
+//               and ReactJs.
+//               I was introduced to the Dev world by a professor during my mechanical
+//               engineering bachelor. I still finished the course and even worked
+//               two years as a mechanical engineer but I decided to change my career
+//               and became a Dev.
+//               First, I studied and did freelancer projects with Python and Django
+//               and, through those projects, I got a job as a Dev. The company uses
+//               Delphi and C# /ASP.Net, and I did projects and client support for a
+//               legacy business management system.
+//               Later, I was contacted via LinkedIn to participate in a selection
+//               process at my current company. Here, we develop custom projects for
+//               customers. In those projects, we participate in the whole life time,
+//               from planning to implementation and, obviously, going through its
+//               development. Here, we use internal frameworks, C# / ASP.NET and
+//               Javascript.
+//               Finally, I still do freelance. As a freelance, I develop websites,
+//               usually landing pages and SPAs, using pure HTML/CSS/Javascript,
+//               bootstrap, webflow and, recently, ReactJs.
+//               `,
+//           },
+//         ],
+//       },
+//       {
+//         name: AboutSubMenuNames.education,
+//         items: [
+//           { name: "university", description: "alsdkjaksjdlkasd" },
+//           { name: "courses", description: "ajksdhkajsdhkajsh" },
+//         ],
+//       },
+//       {
+//         name: AboutSubMenuNames.interests,
+//         items: [
+//           { name: "sports", description: "alsdkjaksjdlkasd" },
+//           { name: "technology", description: "ajksdhkajsdhkajsh" },
+//           { name: "daily", description: "ajksdhkajsdhkajsh" },
+//         ],
+//       },
+//     ],
+//   },
+//   { name: AboutMenuNames.contacts, subMenu: [] },
+// ];
 
 const About = () => {
+  const { data, loading } = useAboutMenu();
+  let personalInfo: AboutMenus = {
+    name: "",
+    aboutMenuType: AboutMenuNames.personalInfo,
+    aboutSubMenus: [{ aboutSubMenuItems: [], aboutSubMenuType: AboutSubMenuNames.bio, name: "" }],
+  };
+  let contact: AboutMenus = {
+    name: "",
+    aboutMenuType: AboutMenuNames.contacts,
+    aboutSubMenus: [{ aboutSubMenuItems: [], aboutSubMenuType: AboutSubMenuNames.bio, name: "" }],
+  };
+
+  if (!loading) {
+    if (data.aboutMenus[0].aboutMenuType === AboutMenuNames.personalInfo) {
+      personalInfo = data.aboutMenus[0];
+      contact = data.aboutMenus[1];
+    } else {
+      personalInfo = data.aboutMenus[1];
+      contact = data.aboutMenus[0];
+    }
+  }
   const codeSnippetsData = useCodeSnippets();
   const [selectedMenuName, _] = useState<AboutMenuNames>(AboutMenuNames.personalInfo);
 
   const [selectedSubMenuName, setSelectedSubMenuName] = useState<AboutSubMenuNames>(AboutSubMenuNames.bio);
 
-  const [selectedSubMenuItens, setSelectedSubMenuItens] = useState<SubMenuItens>();
+  const [selectedSubMenuItens, setSelectedSubMenuItens] = useState<AboutSubMenuItems>();
 
-  const [selectedSubMenuItensDescriptionList, setSelectedSubMenuItensDescriptionList] = useState<string[]>([]);
+  const [selectedSubMenuItensDescription, setSelectedSubMenuItensDescription] = useState<string>("");
 
-  const [personalInfoMenu, contactsMenu] = aboutMenu;
+  // const [personalInfoMenu, contactsMenu] = aboutMenu;
 
-  if (!selectedSubMenuItens) {
-    const [projectInfo, _] = aboutMenu;
-    projectInfo.subMenu.forEach((subMenu) => {
-      subMenu.items.forEach((item) => {
+  const isLoadingData = !codeSnippetsData || codeSnippetsData.length <= 0;
+
+  if (!selectedSubMenuItens && personalInfo.name !== "") {
+    personalInfo.aboutSubMenus.forEach((subMenu) => {
+      subMenu.aboutSubMenuItems.forEach((item) => {
         if (item.name === "myBio") {
           setSelectedSubMenuItens(item);
-          setSelectedSubMenuItensDescriptionList(getSelectedSubMenuItensDescriptionList(item?.description));
+          setSelectedSubMenuItensDescription(item.description.text);
         }
       });
     });
   }
 
-  function getSelectedSubMenuItensDescriptionList(description: string): string[] {
-    const selectedSubMenuItensWordsList = description.split(" ");
-    const wordsList = [];
-    let words = "";
+  // function getSelectedSubMenuItensDescription(description: string): string[] {
+  //   const selectedSubMenuItensWordsList = description.split(" ");
+  //   const wordsList = [];
+  //   let words = "";
 
-    for (let index = 0; index < selectedSubMenuItensWordsList.length; index++) {
-      words += `${selectedSubMenuItensWordsList[index]} `;
-      if (words.length >= 2300) {
-        wordsList.push(words);
-        words = "";
-      }
-    }
-    if (wordsList.length <= 0) wordsList.push(words);
-    return wordsList;
-  }
+  //   for (let index = 0; index < selectedSubMenuItensWordsList.length; index++) {
+  //     words += `${selectedSubMenuItensWordsList[index]} `;
+  //     if (words.length >= 2300) {
+  //       wordsList.push(words);
+  //       words = "";
+  //     }
+  //   }
+  //   if (wordsList.length <= 0) wordsList.push(words);
+  //   return wordsList;
+  // }
 
   function handleSelectedMenu(name: string) {
-    const [projectInfo, _] = aboutMenu;
-    const selectedSubMenu = projectInfo.subMenu.find((subMenu) => subMenu.items.find((item) => item.name === name));
-
-    setSelectedSubMenuName(selectedSubMenu!.name);
-    setSelectedSubMenuItens(selectedSubMenu?.items.find((item) => item.name === name));
+    console.log("namee", name);
+    const selectedSubMenu = personalInfo.aboutSubMenus.find((subMenu) =>
+      subMenu.aboutSubMenuItems.find((item) => item.name === name)
+    );
+    const selectedSubMenuItem = selectedSubMenu.aboutSubMenuItems.find((item) => item.name === name);
+    setSelectedSubMenuName(selectedSubMenu.aboutSubMenuType);
+    setSelectedSubMenuItens(selectedSubMenuItem);
+    setSelectedSubMenuItensDescription(selectedSubMenuItem.description.text);
   }
-
-  const isLoadingData = !codeSnippetsData || codeSnippetsData.length <= 0;
 
   return (
     <div
@@ -174,10 +193,10 @@ const About = () => {
                     size={20}
                     className={open ? "rotate-90 transform transition-transform duration-300" : ""}
                   />
-                  <span className=" text-secondary-white">{personalInfoMenu.name}</span>
+                  <span className=" text-secondary-white">{personalInfo.name}</span>
                 </Disclosure.Button>
                 <Disclosure.Panel className="flex flex-col px-7 mt-1 mb-3">
-                  {personalInfoMenu.subMenu.map((subMenu) => {
+                  {personalInfo.aboutSubMenus.map((subMenu) => {
                     return (
                       <Disclosure>
                         {({ open }) => (
@@ -200,7 +219,7 @@ const About = () => {
                               <span className="text-sm font-normal leading-6">{subMenu.name}</span>
                             </Disclosure.Button>
                             <Disclosure.Panel className="flex flex-col gap-1 items-start mt-1">
-                              {subMenu.items.map((item) => {
+                              {subMenu.aboutSubMenuItems.map((item) => {
                                 return (
                                   <button
                                     onClick={() => {
@@ -263,13 +282,9 @@ const About = () => {
                 className="text-sm leading-7 break-words  w-full md:h-full
                         md:border-lines whitespace-pre-line "
               >
-                {selectedSubMenuItensDescriptionList.map((description) => {
-                  return (
-                    <p key={description} className="md:px-4  md:pt-4 md:pb-6 md:border-r-1 md:border-lines h-full ">
-                      {description}
-                    </p>
-                  );
-                })}
+                <p className="md:px-4  md:pt-4 md:pb-6 md:border-r-1 md:border-lines h-full ">
+                  {selectedSubMenuItensDescription}
+                </p>
               </div>
             </div>
           </div>
