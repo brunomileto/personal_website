@@ -12,7 +12,9 @@ import { useLocale } from '../context/LocaleContext';
 
 export enum ContactMenuNames {
   contacts = "contacts",
+  contactsPtBr = "contatos",
   findMeAlso = "find_me_also_in",
+  findMeAlsoPtBr = "me_encontre_em",
 }
 
 interface NameProps {
@@ -56,7 +58,7 @@ function SymbolsSpan({ name }: NameProps) {
 }
 
 const Contact = () => {
-  const { locale } = useLocale();
+  const { locale, isPtBr } = useLocale();
   const [selectedMenuName, setSelectedMenuName] = useState<ContactMenuNames>(ContactMenuNames.contacts);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -80,7 +82,7 @@ const Contact = () => {
                  md:overflow-hidden overflow-scroll mb-0 "
     >
       <div id="title" className="px-7 pt-6 pb-8 md:hidden">
-        <span className="text-secondary-white">_contacts</span>
+        <span className="text-secondary-white">{isPtBr ? "_contatos" : "_contacts"}</span>
       </div>
       <div
         id="lateralMenu"
@@ -89,17 +91,17 @@ const Contact = () => {
                 md:flex-shrink-0 md:overflow-x-hidden"
       >
         <DisclosureMenuLinks
-          menuName={ContactMenuNames.contacts}
+          menuName={isPtBr ? ContactMenuNames.contactsPtBr : ContactMenuNames.contacts}
           links={[
             { name: "bruno_mileto@outlook.com", href: "#", icon: MailFillIcon },
             { name: "+5562992861675", href: "#", icon: PhoneFillIcon },
           ]}
         />
         <DisclosureMenuLinks
-          menuName={ContactMenuNames.findMeAlso}
+          menuName={isPtBr ? ContactMenuNames.findMeAlsoPtBr : ContactMenuNames.findMeAlso}
           links={[
             {
-              name: "Instagram account",
+              name: "Instagram",
               href: "https://instagram.com/bruno_mileto",
               icon: ExternalLinkFillIcon,
             },
