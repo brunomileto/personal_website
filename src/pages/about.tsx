@@ -19,81 +19,13 @@ import { CodeSnippet } from '../components/CodeSnippet';
 import { DisclosureMenuLinks } from '../components/DisclosureMenuLinks';
 import { Spinner } from '../components/Spinner';
 import { useCodeSnippets } from '../context/CodesContext';
+import { useLocale } from '../context/LocaleContext';
 import {
-    AboutMenuNames, AboutMenus, AboutSubMenuItems, AboutSubMenuNames, GetAboutMenusQueryResponse,
-    useAboutMenu
+    AboutMenuNames, AboutMenus, AboutSubMenuItems, AboutSubMenuNames, useAboutMenu
 } from '../hooks/useAboutMenu';
-import { GET_ABOUT_MENU } from '../libs/apollo/apolloQueries';
-
-// interface Menu {
-//   name: AboutMenuNames;
-//   subMenu: SubMenu[];
-// }
-
-// interface SubMenu {
-//   name: AboutSubMenuNames;
-//   items: SubMenuItens[];
-// }
-
-// export interface SubMenuItens {
-//   name: string;
-//   description: string;
-// }
-
-// export const aboutMenu: Menu[] = [
-//   {
-//     name: AboutMenuNames.personalInfo,
-//     subMenu: [
-//       {
-//         name: AboutSubMenuNames.bio,
-//         items: [
-//           {
-//             name: "myBio",
-//             description: `I'm Bruno Mileto, FullStack Developer, located at Brazil, with 2+ years of experience. I worked and studied different technologies,
-//               during this time. I currently work professionally using C# / ASP.NET
-//               and ReactJs.
-//               I was introduced to the Dev world by a professor during my mechanical
-//               engineering bachelor. I still finished the course and even worked
-//               two years as a mechanical engineer but I decided to change my career
-//               and became a Dev.
-//               First, I studied and did freelancer projects with Python and Django
-//               and, through those projects, I got a job as a Dev. The company uses
-//               Delphi and C# /ASP.Net, and I did projects and client support for a
-//               legacy business management system.
-//               Later, I was contacted via LinkedIn to participate in a selection
-//               process at my current company. Here, we develop custom projects for
-//               customers. In those projects, we participate in the whole life time,
-//               from planning to implementation and, obviously, going through its
-//               development. Here, we use internal frameworks, C# / ASP.NET and
-//               Javascript.
-//               Finally, I still do freelance. As a freelance, I develop websites,
-//               usually landing pages and SPAs, using pure HTML/CSS/Javascript,
-//               bootstrap, webflow and, recently, ReactJs.
-//               `,
-//           },
-//         ],
-//       },
-//       {
-//         name: AboutSubMenuNames.education,
-//         items: [
-//           { name: "university", description: "alsdkjaksjdlkasd" },
-//           { name: "courses", description: "ajksdhkajsdhkajsh" },
-//         ],
-//       },
-//       {
-//         name: AboutSubMenuNames.interests,
-//         items: [
-//           { name: "sports", description: "alsdkjaksjdlkasd" },
-//           { name: "technology", description: "ajksdhkajsdhkajsh" },
-//           { name: "daily", description: "ajksdhkajsdhkajsh" },
-//         ],
-//       },
-//     ],
-//   },
-//   { name: AboutMenuNames.contacts, subMenu: [] },
-// ];
 
 const About = () => {
+  const { isPtBr } = useLocale();
   const { data, loading } = useAboutMenu();
   let personalInfo: AboutMenus = {
     name: "",
@@ -107,12 +39,12 @@ const About = () => {
   };
 
   if (!loading) {
-    if (data.aboutMenus[0].aboutMenuType === AboutMenuNames.personalInfo) {
-      personalInfo = data.aboutMenus[0];
-      contact = data.aboutMenus[1];
+    if (data!.aboutMenus[0].aboutMenuType === AboutMenuNames.personalInfo) {
+      personalInfo = data!.aboutMenus[0];
+      contact = data!.aboutMenus[1];
     } else {
-      personalInfo = data.aboutMenus[1];
-      contact = data.aboutMenus[0];
+      personalInfo = data!.aboutMenus[1];
+      contact = data!.aboutMenus[0];
     }
   }
   const codeSnippetsData = useCodeSnippets();
@@ -123,8 +55,6 @@ const About = () => {
   const [selectedSubMenuItens, setSelectedSubMenuItens] = useState<AboutSubMenuItems>();
 
   const [selectedSubMenuItensDescription, setSelectedSubMenuItensDescription] = useState<string>("");
-
-  // const [personalInfoMenu, contactsMenu] = aboutMenu;
 
   const isLoadingData = !codeSnippetsData || codeSnippetsData.length <= 0;
 
@@ -139,31 +69,15 @@ const About = () => {
     });
   }
 
-  // function getSelectedSubMenuItensDescription(description: string): string[] {
-  //   const selectedSubMenuItensWordsList = description.split(" ");
-  //   const wordsList = [];
-  //   let words = "";
-
-  //   for (let index = 0; index < selectedSubMenuItensWordsList.length; index++) {
-  //     words += `${selectedSubMenuItensWordsList[index]} `;
-  //     if (words.length >= 2300) {
-  //       wordsList.push(words);
-  //       words = "";
-  //     }
-  //   }
-  //   if (wordsList.length <= 0) wordsList.push(words);
-  //   return wordsList;
-  // }
-
   function handleSelectedMenu(name: string) {
     console.log("namee", name);
     const selectedSubMenu = personalInfo.aboutSubMenus.find((subMenu) =>
       subMenu.aboutSubMenuItems.find((item) => item.name === name)
     );
-    const selectedSubMenuItem = selectedSubMenu.aboutSubMenuItems.find((item) => item.name === name);
-    setSelectedSubMenuName(selectedSubMenu.aboutSubMenuType);
+    const selectedSubMenuItem = selectedSubMenu!.aboutSubMenuItems.find((item) => item.name === name);
+    setSelectedSubMenuName(selectedSubMenu!.aboutSubMenuType);
     setSelectedSubMenuItens(selectedSubMenuItem);
-    setSelectedSubMenuItensDescription(selectedSubMenuItem.description.text);
+    setSelectedSubMenuItensDescription(selectedSubMenuItem!.description.text);
   }
 
   return (
@@ -246,7 +160,7 @@ const About = () => {
           }}
         </Disclosure>
         <DisclosureMenuLinks
-          menuName={"contacts"}
+          menuName={isPtBr ? "contatos" : "contacts"}
           links={[
             { name: "brunomileto@outlook.com", href: "#", icon: MailFillIcon },
             { name: "+5562992861675", href: "#", icon: PhoneFillIcon },

@@ -14,6 +14,7 @@ import {
 import * as Checkbox from '@radix-ui/react-checkbox';
 
 import { Spinner } from '../components/Spinner';
+import { useLocale } from '../context/LocaleContext';
 import { GET_ALL_PROJECTS_SIMPLE_QUERY } from '../libs/apollo/apolloQueries';
 
 const ProjectTypeNamesArray = [
@@ -147,8 +148,7 @@ interface GetProjectsQueryResponse {
 
 const Projects = () => {
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>(ProjectTypes);
-  const router = useRouter();
-  const locale = router.locale === "pt-BR" ? "pt_BR" : router.locale;
+  const { isPtBr, locale } = useLocale();
 
   function handleSelectedType(selectedType: ProjectType) {
     const actualizedProjectTypes = [
@@ -183,19 +183,6 @@ const Projects = () => {
     }
   });
 
-  // if (selectedTypes.length > 0) {
-  //   data?.projects.forEach((project) => {
-  //     if (selectedTypes.some((value) => project.projectTypes.includes(value.type))) {
-  //       selectedProjects?.push({
-  //         ...project,
-  //         coverPicture: { url: !project.coverPicture.url ? "/" : project.coverPicture.url },
-  //       });
-  //     }
-  //   });
-  // } else {
-  //   selectedProjects = data?.projects;
-  // }
-
   const formattedSelectedTypes =
     selectedTypes.length > 3
       ? [...selectedTypes.slice(0, 3).map((selectedType) => `"${selectedType.type}"`), "..."].join(", ")
@@ -207,7 +194,7 @@ const Projects = () => {
                  md:overflow-hidden overflow-scroll mb-0"
     >
       <div id="title" className="px-7 pt-6 pb-8 md:hidden">
-        <span className="text-secondary-white">_projects</span>
+        <span className="text-secondary-white">{isPtBr ? "_projetos" : "_projects"}</span>
       </div>
       <div
         id="lateralMenu"
@@ -229,7 +216,7 @@ const Projects = () => {
                     size={20}
                     className={open ? "rotate-90 transform transition-transform duration-300" : ""}
                   />
-                  <span className=" text-secondary-white">projects</span>
+                  <span className=" text-secondary-white">{isPtBr ? "projetos" : "projects"}</span>
                 </Disclosure.Button>
                 <Disclosure.Panel
                   className="flex flex-col pl-9 md:pl-4 mt-3 mb-4 
@@ -293,7 +280,7 @@ const Projects = () => {
               className="md:flex  md:flex-row md:gap-3 md:border-b-1 
                      md:border-lines md:pl-2  md:w-full md:items-center "
             >
-              <span className="text-secondary-white md:py-2">\\ projects </span>
+              <span className="text-secondary-white md:py-2">{isPtBr ? "\\\\ projetos" : "\\ projects"} </span>
               <span className="text-secondary-sky md:py-2">\ [{formattedSelectedTypes}]</span>
               <div
                 className="hidden md:inline cursor-pointer ml-6 pr-4 border-r-1 
@@ -320,7 +307,9 @@ const Projects = () => {
                         className="flex flex-col items-center gap-4 w-full max-w-[400px] "
                       >
                         <header className="w-full text-sm">
-                          <span className="text-secondary-blue font-bold">Project {index + 1}</span>
+                          <span className="text-secondary-blue font-bold">
+                            {isPtBr ? "Projeto" : "Project"} {index + 1}
+                          </span>
                           <span> / {selectedProject.shortname}</span>
                         </header>
                         <div
@@ -350,13 +339,13 @@ const Projects = () => {
                             </div>
                           </div>
                           <div className="h-[90%] pt-7 mt-6 pb-8 pl-8 flex flex-col gap-6">
-                            <span>Duis aute irure dolor in velit esse cillum incididunt ut labore.</span>
+                            <span>{selectedProject.shortDescription}</span>
                             <div>
                               <button
                                 className="bg-lines text-secondary-white text-sm py-2 
                                                   px-3 rounded"
                               >
-                                view_project
+                                {isPtBr ? "ver_projeto" : "view_project"}
                               </button>
                             </div>
                           </div>

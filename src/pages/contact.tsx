@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import enUs from 'date-fns/locale/en-US';
 import ptBR from 'date-fns/locale/pt-BR';
 import { useState } from 'react';
 import ExternalLinkFillIcon from 'remixicon-react/ExternalLinkFillIcon';
@@ -7,6 +8,7 @@ import PhoneFillIcon from 'remixicon-react/PhoneFillIcon';
 
 import { ContactForm } from '../components/ContatctForm';
 import { DisclosureMenuLinks } from '../components/DisclosureMenuLinks';
+import { useLocale } from '../context/LocaleContext';
 
 export enum ContactMenuNames {
   contacts = "contacts",
@@ -54,18 +56,13 @@ function SymbolsSpan({ name }: NameProps) {
 }
 
 const Contact = () => {
-  const [selectedMenuName, setSelectedMenuName] = useState<ContactMenuNames>(
-    ContactMenuNames.contacts
-  );
+  const { locale } = useLocale();
+  const [selectedMenuName, setSelectedMenuName] = useState<ContactMenuNames>(ContactMenuNames.contacts);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
-  function handleFormDataChange(
-    changedName: string,
-    changedEmail: string,
-    changedMessage: string
-  ) {
+  function handleFormDataChange(changedName: string, changedEmail: string, changedMessage: string) {
     if (changedName !== name) {
       setName(changedName);
     }
@@ -119,12 +116,7 @@ const Contact = () => {
         className="mt-9 md:mt-0  md:text-sm  px-7 md:px-0 flex flex-col 
                  md:flex-row gap-9 md:gap-0 md:w-full"
       >
-        <ContactForm
-          name={name}
-          email={email}
-          message={message}
-          handleFormDataChange={handleFormDataChange}
-        />
+        <ContactForm name={name} email={email} message={message} handleFormDataChange={handleFormDataChange} />
         <section
           id="code-snippet"
           className="hidden md:flex md:flex-col md:gap-0 md:border-l-1 md:border-lines 
@@ -192,7 +184,7 @@ const Contact = () => {
                   <VariableNameSpan name="date" />
                   <SymbolsSpan name=":" /> &nbsp;
                   <FunctionParamSpan
-                    name={`"${format(new Date(), "PP", { locale: ptBR })}"`}
+                    name={`"${format(new Date(), "PP", { locale: locale === "pt_BR" ? ptBR : enUs })}"`}
                   />
                   <SymbolsSpan name="," />
                 </div>

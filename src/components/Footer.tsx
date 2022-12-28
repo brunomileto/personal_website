@@ -1,11 +1,14 @@
 import GithubFillIcon from 'remixicon-react/GithubFillIcon';
 import LinkedinFillIcon from 'remixicon-react/LinkedinFillIcon';
 
+import { useLocale } from '../context/LocaleContext';
+
 export function Footer() {
+  const { isPtBr } = useLocale();
   return (
     <footer className="h-[55px] flex border-t-1 items-center rounded-b-lg border-lines">
       <div className="flex-1 ml-4 my-4">
-        <span>find me in: </span>
+        <span>{isPtBr ? "Me encontre no: " : "find me in: "}</span>
       </div>
       <div className="flex items-center h-full">
         <a
