@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 
 import { useQuery } from '@apollo/client';
 
+import { useLocale } from '../context/LocaleContext';
 import { GET_ABOUT_MENU } from '../libs/apollo/apolloQueries';
 
 export enum AboutMenuNames {
@@ -37,11 +38,8 @@ export interface GetAboutMenusQueryResponse {
 }
 
 export function useAboutMenu() {
-  const router = useRouter();
-  const language = router.locale;
-  const locale = language === "pt-BR" ? "pt_BR" : language;
+  const { locale } = useLocale();
 
-  // console.log("LOCALE", locale);
   const { data, loading, error } = useQuery<GetAboutMenusQueryResponse>(GET_ABOUT_MENU, {
     variables: { locales: [locale] },
   });

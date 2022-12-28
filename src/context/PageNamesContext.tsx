@@ -3,6 +3,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 import { useQuery } from '@apollo/client';
 
 import { GET_SITE_PAGE_NAMES_QUERY } from '../libs/apollo/apolloQueries';
+import { useLocale } from './LocaleContext';
 
 const paths = {};
 
@@ -25,9 +26,8 @@ export interface PageNamesType {
   path: string;
 }
 
-interface CodesContextProviderProps {
+interface PageNamesContextProviderType {
   children: ReactNode;
-  language: string;
 }
 
 interface GetPageNamesQueryResponse {
@@ -41,8 +41,8 @@ interface PageNamesProviderValue {
 
 export const PageNamesContext = createContext({} as PageNamesProviderValue);
 
-export function PageNamesContextProvider({ children, language }: CodesContextProviderProps) {
-  const locale = language === "pt-BR" ? "pt_BR" : language;
+export function PageNamesContextProvider({ children }: PageNamesContextProviderType) {
+  const { locale } = useLocale();
   const { data, loading, error } = useQuery<GetPageNamesQueryResponse>(GET_SITE_PAGE_NAMES_QUERY, {
     variables: { locales: [locale] },
   });
