@@ -1,28 +1,31 @@
-import { NextPage } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import {
+  AboutMenuNames,
+  AboutMenus,
+  AboutSubMenuItems,
+  AboutSubMenuNames,
+  useAboutMenu
+} from '../hooks/useAboutMenu';
 import { useEffect, useState } from 'react';
+
 import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
 import ArrowRightSLineIcon from 'remixicon-react/ArrowRightSLineIcon';
 import CloseFillIcon from 'remixicon-react/CloseFillIcon';
+import { CodeSnippet } from '../components/CodeSnippet';
+import { Disclosure } from '@headlessui/react';
+import { DisclosureMenuLinks } from '../components/DisclosureMenuLinks';
 import File2FillIcon from 'remixicon-react/File2FillIcon';
 import Folder from 'remixicon-react/Folder2FillIcon';
+import Image from 'next/image';
+import Link from 'next/link';
 import MailFillIcon from 'remixicon-react/MailFillIcon';
+import { NextPage } from 'next';
 import PhoneFillIcon from 'remixicon-react/PhoneFillIcon';
-
-import { useQuery } from '@apollo/client';
-import { Disclosure } from '@headlessui/react';
-
-import userImg from '../assets/userImg.png';
-import { CodeSnippet } from '../components/CodeSnippet';
-import { DisclosureMenuLinks } from '../components/DisclosureMenuLinks';
 import { Spinner } from '../components/Spinner';
 import { useCodeSnippets } from '../context/CodesContext';
 import { useLocale } from '../context/LocaleContext';
-import {
-    AboutMenuNames, AboutMenus, AboutSubMenuItems, AboutSubMenuNames, useAboutMenu
-} from '../hooks/useAboutMenu';
+import { useQuery } from '@apollo/client';
+import { useRouter } from 'next/router';
+import userImg from '../assets/userImg.png';
 
 const About = () => {
   const { isPtBr } = useLocale();
@@ -70,7 +73,6 @@ const About = () => {
   }
 
   function handleSelectedMenu(name: string) {
-    console.log("namee", name);
     const selectedSubMenu = personalInfo.aboutSubMenus.find((subMenu) =>
       subMenu.aboutSubMenuItems.find((item) => item.name === name)
     );
@@ -126,8 +128,8 @@ const About = () => {
                                   subMenu.name === "bio"
                                     ? "text-accent-orange"
                                     : subMenu.name === "education"
-                                    ? "text-accent-redOrange"
-                                    : "text-secondary-blue"
+                                      ? "text-accent-redOrange"
+                                      : "text-secondary-blue"
                                 }
                               />
                               <span className="text-sm font-normal leading-6">{subMenu.name}</span>

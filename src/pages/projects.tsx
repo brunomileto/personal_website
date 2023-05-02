@@ -1,21 +1,36 @@
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import * as Checkbox from '@radix-ui/react-checkbox';
+
+import {
+  Automattic,
+  Csharp,
+  CssThree,
+  Django,
+  Express,
+  Html5,
+  Javascript,
+  Nestjs,
+  Nextdotjs,
+  Nodedotjs,
+  Openapiinitiative,
+  Python,
+  ReactJs,
+  Styledcomponents,
+  Tailwindcss,
+  Typescript
+} from '@icons-pack/react-simple-icons';
+import { useEffect, useState } from 'react';
+
 import ArrowRightSFillIcon from 'remixicon-react/ArrowRightSFillIcon';
 import CheckFillIcon from 'remixicon-react/CheckFillIcon';
 import CloseFillIcon from 'remixicon-react/CloseFillIcon';
-
-import { useQuery } from '@apollo/client/react/hooks';
 import { Disclosure } from '@headlessui/react';
-import {
-    Automattic, Csharp, CssThree, Django, Express, Html5, Javascript, Nodedotjs, Openapiinitiative,
-    Python, ReactJs, Styledcomponents, Tailwindcss, Typescript
-} from '@icons-pack/react-simple-icons';
-import * as Checkbox from '@radix-ui/react-checkbox';
-
+import { GET_ALL_PROJECTS_SIMPLE_QUERY } from '../libs/apollo/apolloQueries';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Spinner } from '../components/Spinner';
 import { useLocale } from '../context/LocaleContext';
-import { GET_ALL_PROJECTS_SIMPLE_QUERY } from '../libs/apollo/apolloQueries';
+import { useQuery } from '@apollo/client/react/hooks';
+import { useRouter } from 'next/router';
 
 const ProjectTypeNamesArray = [
   "Automation",
@@ -32,6 +47,8 @@ const ProjectTypeNamesArray = [
   "StyledComponents",
   "TailwindCss",
   "Typescript",
+  "NestJs",
+  "NextJs"
 ] as const;
 
 type ProjectTypeNames = typeof ProjectTypeNamesArray[number];
@@ -124,6 +141,16 @@ export const ProjectTypes: ProjectType[] = [
     isSelected: false,
   },
   {
+    type: "NestJs",
+    icon: Nestjs,
+    isSelected: false,
+  },
+  {
+    type: "NextJs",
+    icon: Nextdotjs,
+    isSelected: false,
+  },
+  {
     type: "Typescript",
     icon: Typescript,
     isSelected: false,
@@ -135,6 +162,7 @@ export interface ProjectQuery {
   shortname: string;
   shortDescription: string;
   externalUrl: string;
+  githubUrl: string;
   slug: string;
   projectTypes: ProjectTypeNames[];
   coverPicture: {
@@ -148,6 +176,8 @@ interface GetProjectsQueryResponse {
 
 const Projects = () => {
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>(ProjectTypes);
+  const [selectedProjects, setSelectedProjects] = useState<ProjectQuery[]>([])
+  const [formattedSelectedProjectTypes, setFormattedSelectedProjectTypes] = useState<string>()
   const { isPtBr, locale } = useLocale();
 
   function handleSelectedType(selectedType: ProjectType) {
@@ -161,32 +191,34 @@ const Projects = () => {
     ];
     setProjectTypes(actualizedProjectTypes);
   }
+
+
   const { data, loading, error } = useQuery<GetProjectsQueryResponse>(GET_ALL_PROJECTS_SIMPLE_QUERY, {
     variables: { locales: [locale] },
   });
 
-  const selectedTypes = projectTypes.filter((type) => type.isSelected);
-
-  let selectedProjects: ProjectQuery[] | undefined = [];
-
-  data?.projects.forEach((project) => {
-    if (selectedTypes.length > 0 && selectedTypes.some((value) => project.projectTypes.includes(value.type))) {
-      selectedProjects?.push({
-        ...project,
-        coverPicture: { url: !project.coverPicture ? "/" : project.coverPicture.url },
-      });
-    } else {
-      selectedProjects?.push({
-        ...project,
-        coverPicture: { url: !project.coverPicture ? "/" : project.coverPicture.url },
+  useEffect(() => {
+    const _selectedProjectTypes = projectTypes.filter((type) => type.isSelected);
+    let _selectedProjects: ProjectQuery[] = [];
+    if (data) {
+      if (_selectedProjectTypes.length <= 0)
+        data.projects.map(project => _selectedProjects.push({ ...project, coverPicture: { url: !project.coverPicture ? '/' : project.coverPicture.url } }))
+      data.projects.forEach((project) => {
+        if (_selectedProjectTypes.some((value) => project.projectTypes.includes(value.type))) {
+          _selectedProjects.push({
+            ...project,
+            coverPicture: { url: !project.coverPicture ? "/" : project.coverPicture.url },
+          });
+        }
       });
     }
-  });
-
-  const formattedSelectedTypes =
-    selectedTypes.length > 3
-      ? [...selectedTypes.slice(0, 3).map((selectedType) => `"${selectedType.type}"`), "..."].join(", ")
-      : selectedTypes.map((selectedType) => `"${selectedType.type}"`).join(", ");
+    const formattedSelectedTypes =
+      _selectedProjectTypes.length > 3
+        ? [..._selectedProjectTypes.slice(0, 3).map((selectedType) => `"${selectedType.type}"`), "..."].join(", ")
+        : _selectedProjectTypes.map((selectedType) => `"${selectedType.type}"`).join(", ");
+    setFormattedSelectedProjectTypes(formattedSelectedTypes)
+    setSelectedProjects(_selectedProjects)
+  }, [data, projectTypes])
 
   return (
     <main
@@ -281,7 +313,7 @@ const Projects = () => {
                      md:border-lines md:pl-2  md:w-full md:items-center "
             >
               <span className="text-secondary-white md:py-2">{isPtBr ? "\\\\ projetos" : "\\ projects"} </span>
-              <span className="text-secondary-sky md:py-2">\ [{formattedSelectedTypes}]</span>
+              <span className="text-secondary-sky md:py-2">\ [{formattedSelectedProjectTypes}]</span>
               <div
                 className="hidden md:inline cursor-pointer ml-6 pr-4 border-r-1 
                             h-full border-lines md:py-2"
@@ -298,7 +330,7 @@ const Projects = () => {
                             md:border-r-1 md:border-lines lg:grid lg:grid-cols-2 lg:px-16
                             xl:grid-cols-3 2xl:px-32"
               >
-                {selectedProjects &&
+                {selectedProjects.length > 0 &&
                   selectedProjects.map((selectedProject, index) => {
                     return (
                       <div
@@ -321,7 +353,10 @@ const Projects = () => {
                             <div className="h-full w-full border-b-1 border-lines">
                               <Image layout="fill" src={selectedProject.coverPicture.url || ""} />
                             </div>
-                            <div className="absolute right-4 top-2 flex flex-col gap-2">
+                            {/* <div className="absolute right-4 top-2 flex flex-col gap-2"> */}
+                            {/* <div className="absolute right-4 top-2 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"> */}
+                            <div className="absolute right-4 top-2 flex flex-wrap gap-2">
+
                               {ProjectTypes.map((type) => {
                                 if (selectedProject.projectTypes.includes(type.type)) {
                                   return (
@@ -341,12 +376,13 @@ const Projects = () => {
                           <div className="h-[90%] pt-7 mt-6 pb-8 pl-8 flex flex-col gap-6">
                             <span>{selectedProject.shortDescription}</span>
                             <div>
-                              <button
-                                className="bg-lines text-secondary-white text-sm py-2 
-                                                  px-3 rounded"
+                              <Link href={selectedProject.githubUrl} legacyBehavior
+
                               >
-                                {isPtBr ? "ver_projeto" : "view_project"}
-                              </button>
+                                <a className="bg-lines text-secondary-white text-sm py-2
+                                  px-3 rounded" target='_blank'>
+                                  {isPtBr ? "ver_projeto" : "view_project"}</a>
+                              </Link>
                             </div>
                           </div>
                         </div>

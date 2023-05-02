@@ -14,6 +14,7 @@ export const GET_ALL_PROJECTS_SIMPLE_QUERY = gql`
       shortDescription
       slug
       externalUrl
+      githubUrl
       projectTypes
       coverPicture {
         url
