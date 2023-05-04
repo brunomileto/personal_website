@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import { githubApiGetCodeGists, githubApiGetCodes } from '../apis/github';
 
-import { githubApiGetCodes, githubApiGetGists } from '../apis/github';
+import axios from 'axios';
 
 export interface GistContextType {
   id: string;
@@ -60,7 +60,7 @@ export function CodesContextProvider({ children }: CodesContextProviderProps) {
   );
   useEffect(() => {
     const getGists = async () => {
-      const gistsWithoutCode = await githubApiGetGists();
+      const gistsWithoutCode = await githubApiGetCodeGists();
       const gistsWithCode = await githubApiGetCodes(gistsWithoutCode);
       setCodeSnippetsData(gistsWithCode);
     };

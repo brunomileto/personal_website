@@ -373,10 +373,17 @@ const Projects = () => {
                               })}
                             </div>
                           </div>
-                          <div className="h-[90%] pt-7 mt-6 pb-8 pl-8 flex flex-col gap-6">
+                          <div className="h-[90%] pt-7 mt-6 pb-8 pl-8 pr-8 flex flex-col gap-6">
                             <span>{selectedProject.shortDescription}</span>
-                            <div>
+                            <div className='flex flex-row justify-between'>
                               <Link href={selectedProject.githubUrl} legacyBehavior
+
+                              >
+                                <a className="bg-lines text-secondary-white text-sm py-2
+                                  px-3 rounded" target='_blank'>
+                                  {isPtBr ? "mais_informacoes" : "more_info"}</a>
+                              </Link>
+                              <Link href={selectedProject.externalUrl} legacyBehavior
 
                               >
                                 <a className="bg-lines text-secondary-white text-sm py-2

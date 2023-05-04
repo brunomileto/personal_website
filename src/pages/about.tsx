@@ -20,7 +20,10 @@ import Link from 'next/link';
 import MailFillIcon from 'remixicon-react/MailFillIcon';
 import { NextPage } from 'next';
 import PhoneFillIcon from 'remixicon-react/PhoneFillIcon';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { RichText } from '@graphcms/rich-text-react-renderer';
 import { Spinner } from '../components/Spinner';
+import { TextDecoderStream } from 'stream/web';
 import { useCodeSnippets } from '../context/CodesContext';
 import { useLocale } from '../context/LocaleContext';
 import { useQuery } from '@apollo/client';
@@ -58,6 +61,7 @@ const About = () => {
   const [selectedSubMenuItens, setSelectedSubMenuItens] = useState<AboutSubMenuItems>();
 
   const [selectedSubMenuItensDescription, setSelectedSubMenuItensDescription] = useState<string>("");
+  const [selectedSubMenuItensDescriptionList, setSelectedSubMenuItensDescriptionList] = useState<string[]>([]);
 
   const isLoadingData = !codeSnippetsData || codeSnippetsData.length <= 0;
 
@@ -67,6 +71,8 @@ const About = () => {
         if (item.name === "myBio") {
           setSelectedSubMenuItens(item);
           setSelectedSubMenuItensDescription(item.description.text);
+          const stringList = item.description.text.toString().split('\\n')
+          setSelectedSubMenuItensDescriptionList(stringList)
         }
       });
     });
@@ -80,6 +86,8 @@ const About = () => {
     setSelectedSubMenuName(selectedSubMenu!.aboutSubMenuType);
     setSelectedSubMenuItens(selectedSubMenuItem);
     setSelectedSubMenuItensDescription(selectedSubMenuItem!.description.text);
+    const stringList = selectedSubMenuItem!.description.text.toString().split('\\n')
+    setSelectedSubMenuItensDescriptionList(stringList)
   }
 
   return (
@@ -198,9 +206,12 @@ const About = () => {
                 className="text-sm leading-7 break-words  w-full md:h-full
                         md:border-lines whitespace-pre-line "
               >
-                <p className="md:px-4  md:pt-4 md:pb-6 md:border-r-1 md:border-lines h-full ">
-                  {selectedSubMenuItensDescription}
-                </p>
+                <div className="md:px-4  md:pt-4 md:pb-6 md:border-r-1 md:border-lines h-full ">
+                  {selectedSubMenuItensDescriptionList.map((line) => {
+                    console.log(line)
+                    return (<p className='mb-4' key={line}>{line}</p>)
+                  })}
+                </div>
               </div>
             </div>
           </div>

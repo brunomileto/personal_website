@@ -1,9 +1,7 @@
-import { useRouter } from 'next/router';
-
-import { useQuery } from '@apollo/client';
-
-import { useLocale } from '../context/LocaleContext';
 import { GET_ABOUT_MENU } from '../libs/apollo/apolloQueries';
+import { useLocale } from '../context/LocaleContext';
+import { useQuery } from '@apollo/client';
+import { useRouter } from 'next/router';
 
 export enum AboutMenuNames {
   personalInfo = "personal_info",
