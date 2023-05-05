@@ -15,14 +15,14 @@ export const LocaleContext = createContext({} as LocaleContextType);
 export function LocaleContextProvider({ children }: LocaleContextProviderProps) {
   const router = useRouter();
   const language = router.locale;
-  const locale = 'en'//language === "pt-BR" ? "pt_BR" : !language ? "en" : language;
+  const locale = language === "pt-BR" ? "pt_BR" : !language ? "en" : language;
 
   return <LocaleContext.Provider value={{ locale }}>{children}</LocaleContext.Provider>;
 }
 
 export const useLocale = () => {
   const { locale } = useContext(LocaleContext);
-  const isPtBr = false//locale === "pt_BR";
+  const isPtBr = locale === "pt_BR";
 
   return { locale, isPtBr };
 };

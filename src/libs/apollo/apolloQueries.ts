@@ -16,7 +16,7 @@ export const GET_ALL_PROJECTS_SIMPLE_QUERY = gql`
       externalUrl
       githubUrl
       projectTypes
-      coverPicture {
+      coverPicture (locales: en) {
         url
       }
     }
